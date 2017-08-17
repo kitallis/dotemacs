@@ -26,6 +26,7 @@ Open emacs and you're good to go. Happy Hacking!
 
 ## Packages Used
 - use-package => *Package Manager*
+- exec-path-from-shell => *Sets up your path and environment variables from your shell's configuration (.bashprofile, .zshenv, ...)*
 - company => *The autocompletion engine*
 - cider => *Connecting a Clojure buffer to a REPL*
 - clojure-mode-extra-font-locking => *Better syntax highlighting for Clojure code*
