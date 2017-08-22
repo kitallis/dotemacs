@@ -134,3 +134,12 @@
   :commands (aggressive-indent-mode)
   :config
   (add-hook 'clojure-mode-hook 'aggressive-indent-mode))
+
+
+
+;; User customizations
+(when (file-exists-p "~/.emacs.d/init-user.el")
+  (setq user-custom-file "~/.emacs.d/init-user.el")
+  (load user-custom-file))
+
+

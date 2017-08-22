@@ -22,6 +22,10 @@ You can find a binary at http://ftp.gnu.org/gnu/emacs/windows/. After you downlo
 ```
 git clone https://gitlab.com/nilenso/dotemacs ~/.emacs.d
 ```
+
+### User customizations
+Create a file init-user.el under your emacs.d. Add any customizations you need there.
+
 Open emacs and you're good to go. Happy Hacking!
 
 ## Packages Used
