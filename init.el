@@ -136,7 +136,7 @@
   (add-hook 'clojure-mode-hook 'aggressive-indent-mode))
 
 
-;; Projectile
+;; Operate (list, search, replace....) on files at a project level.
 (use-package projectile
   :ensure t
   :init
