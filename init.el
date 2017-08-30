@@ -136,10 +136,23 @@
   (add-hook 'clojure-mode-hook 'aggressive-indent-mode))
 
 
+;; Projectile
+(use-package projectile
+  :ensure t
+  :init
+  (setq-default projectile-cache-file
+                (expand-file-name ".projectile-cache" user-emacs-directory))
+  (add-hook 'prog-mode-hook #'projectile-mode)
+
+  :config
+  (projectile-mode)
+  (setq-default projectile-enable-caching t
+                ;; Show project (if any) name in modeline
+                projectile-mode-line '(:eval (projectile-project-name))))
+
+
 
 ;; User customizations
 (when (file-exists-p "~/.emacs.d/init-user.el")
   (setq user-custom-file "~/.emacs.d/init-user.el")
   (load user-custom-file))
-
-
