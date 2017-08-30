@@ -151,6 +151,8 @@
                 projectile-mode-line '(:eval (projectile-project-name))))
 
 
+;; Magit: The only git interface you'll ever need
+(use-package magit :ensure t)
 
 ;; User customizations
 (when (file-exists-p "~/.emacs.d/init-user.el")
