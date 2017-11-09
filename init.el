@@ -81,6 +81,9 @@
   (set-face-foreground 'show-paren-match "black"))
 (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
 
+;; Add ability to shift between buffers using shift+arrow keys.
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
 
 ;; Paredit makes it easier to navigate/edit s-expressions as blocks.
 (use-package paredit
