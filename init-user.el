@@ -22,14 +22,11 @@
 ;; Enable recentf
 (use-package recentf)
 (recentf-mode t)
-
 ;; replace 'find-file-read-only'
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
-
-(setq recentf-max-menu-items 15)
 (setq recentf-max-saved-items 500)
+(setq recentf-max-menu-items 15)
 (setq recentf-auto-cleanup 'never)
-
 (defun ido-recentf-open ()
   "Use 'ido-completing-read' to \\[find-file] a recent file."
   (interactive)
@@ -76,7 +73,7 @@
 ;; Remove bars
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-(toggle-scroll-bar -1)
+(scroll-bar-mode -1)
 
 
 ;; Remove selected text via backspace / enter
