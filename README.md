@@ -1,8 +1,6 @@
 ## dotemacs
 
-A short and sweet emacs setup for Clojure brought to you by the folks at Nilenso. This is intended to get folks up and running with Emacs for editing Clojure code with zero configuration. If you are interested in further functionality, feel free to go down that rabbithole :)
-
-To get a taste of what Emacs has to offer, you might want to check out the short screencasts at http://emacsrocks.com/.
+Fork of: https://gitlab.com/nilenso/dotemacs
 
 ## Installing
 
@@ -15,16 +13,13 @@ Install vanilla Emacs as a Mac app from http://emacsformacosx.com. Other options
 #### Ubuntu
 Follow the instructions at https://launchpad.net/~cassou/+archive/emacs.
 
-#### Windows 
+#### Windows
 You can find a binary at http://ftp.gnu.org/gnu/emacs/windows/. After you download and unzip the latest version, you can run the Emacs executable under bin\runemacs.exe.
 
 ### Setup Configuration
 ```
 git clone https://gitlab.com/nilenso/dotemacs ~/.emacs.d
 ```
-
-### User customizations
-Create a file init-user.el under your emacs.d. Add any customizations you need there.
 
 Open emacs and you're good to go. Happy Hacking!
 
