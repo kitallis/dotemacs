@@ -1,7 +1,7 @@
 ;; A minimial setup for Clojurians
 
-
 (require 'package)
+
 
 ;; Define package repositories
 (add-to-list 'package-archives
@@ -9,10 +9,12 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 
+
 ;; Load and activate emacs packages. Do this first so that the
 ;; packages are loaded before you start trying to modify them.
 ;; This also sets the load path.
 (package-initialize)
+
 
 ;; Automatically reload files when they change on disk
 (global-auto-revert-mode 1)
@@ -81,9 +83,11 @@
   (set-face-foreground 'show-paren-match "black"))
 (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
 
+
 ;; Add ability to shift between buffers using shift+arrow keys.
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
+
 
 ;; Paredit makes it easier to navigate/edit s-expressions as blocks.
 (use-package paredit
@@ -130,7 +134,6 @@
             (local-set-key (kbd "<C-return>") 'cider-eval-defun-at-point)))
 
 
-
 ;; Aggressively indents your clojure code
 (use-package aggressive-indent
   :ensure t
@@ -156,6 +159,7 @@
 
 ;; Magit: The only git interface you'll ever need
 (use-package magit :ensure t)
+
 
 ;; User customizations
 (when (file-exists-p "~/.emacs.d/init-user.el")
