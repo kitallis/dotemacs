@@ -1,0 +1,2 @@
+# dotemacs
+bare-bones effectiveness
