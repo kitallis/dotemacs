@@ -91,3 +91,7 @@
 
 ;; Git status
 (global-set-key (kbd "C-c g") 'magit-status)
+
+
+;; Enable org mode
+(use-package org-mode)
