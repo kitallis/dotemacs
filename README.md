@@ -32,3 +32,11 @@ Open emacs and you're good to go. Happy Hacking!
 - aggressive-indent => *Indenting code as you type*
 - paredit => *Treats s-expressions as blocks for easier navigation/editing*
 - rainbow-delimiters => *Sets the same color for matching parentheses. Icing on the cake :)*
+- smex => *M-x enhancement*
+- projectile => *Project interaction - finding files / grepping through projects etc.*
+- magit => *Git inside emacs*
+- go-mode => *Major mode for Golang - syntax highlighting / gofmt etc.*
+- gotest => *Run Golang tests from within emacs*
+- undo-tree => *Visualize or walk undo/redo trees*
+- flycheck => *Syntax checking for tons of languages*
+- monokai => *Dark and fruity color theme*
