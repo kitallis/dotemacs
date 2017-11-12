@@ -1,3 +1,9 @@
+;;; init-user.el --- Customizations on base emacs.d
+;;
+;;; Commentary:
+;;; Code:
+
+
 ;; Theme: monokai.el
 (use-package monokai-theme)
 
@@ -25,7 +31,7 @@
 (setq recentf-auto-cleanup 'never)
 
 (defun ido-recentf-open ()
-  "Use 'ido-completing-read' to \\[find-file] a recent file"
+  "Use 'ido-completing-read' to \\[find-file] a recent file."
   (interactive)
   (if (find-file (ido-completing-read "Find recent file: " recentf-list))
       (message "Opening file...")
@@ -40,7 +46,7 @@
 
 
 ;; Projectile
-(projectile-global-mode t)
+(projectile-mode t)
 (global-set-key (kbd "s-t") 'projectile-find-file)
 (global-set-key (kbd "s-g") 'projectile-grep)
 (global-set-key (kbd "s-p") 'projectile-switch-project)
@@ -95,3 +101,18 @@
 
 ;; Enable org mode
 (use-package org-mode)
+
+
+;; Enable undo-tree
+(use-package undo-tree)
+(global-undo-tree-mode t)
+(global-set-key (kbd "s-Z") 'undo-tree-redo)
+
+
+;; Enable flycheck
+(use-package flycheck)
+(global-flycheck-mode t)
+
+
+(provide 'init-user)
+;;; init-user.el ends here
