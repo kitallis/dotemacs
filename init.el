@@ -28,6 +28,31 @@
 (setq-default use-package-always-ensure t)
 
 
+;; Show full file path in the title bar
+(setq
+ frame-title-format
+ '((:eval (if (buffer-file-name)
+              (abbreviate-file-name (buffer-file-name))
+            "%b"))))
+
+
+;; Use y/n instead of full yes/no for confirmation messages
+(fset 'yes-or-no-p 'y-or-n-p)
+
+
+;; Line numbers
+(global-linum-mode t)
+
+
+;; Remove trailing whitespace before saving
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+
+;; M-x with recently/frequently used commands
+(use-package smex)
+(global-set-key (kbd "M-x") 'smex)
+
+
 ;; On OS X, an Emacs instance started from the graphical user
 ;; interface will have a different environment than a shell in a
 ;; terminal window, because OS X does not run a shell during the
@@ -62,7 +87,7 @@
   (setq company-selection-wrap-around t)
   (setq company-tooltip-align-annotations t)
   (setq company-tooltip-flip-when-above t)
-   ; weight by frequency
+  ;; weight by frequency
   (setq company-transformers '(company-sort-by-occurrence)))
 
 
@@ -81,9 +106,11 @@
   (set-face-foreground 'show-paren-match "black"))
 (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
 
+
 ;; Add ability to shift between buffers using shift+arrow keys.
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
+
 
 ;; Paredit makes it easier to navigate/edit s-expressions as blocks.
 (use-package paredit
@@ -103,7 +130,6 @@
 (use-package cider
   :ensure t
   :init
-
   (setq cider-repl-pop-to-buffer-on-connect t
         cider-show-error-buffer t
         cider-auto-select-error-buffer t
@@ -121,7 +147,6 @@
         cider-repl-result-prefix ";; => ")
 
   :config
-
   (add-hook 'cider-mode-hook #'eldoc-mode)
   (add-hook 'cider-repl-mode-hook #'paredit-mode)
   (add-hook 'cider-repl-mode-hook #'company-mode)
