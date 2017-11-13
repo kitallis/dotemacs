@@ -37,3 +37,10 @@ Open emacs and you're good to go. Happy Hacking!
 - aggressive-indent => *Indenting code as you type*
 - paredit => *Treats s-expressions as blocks for easier navigation/editing*
 - rainbow-delimiters => *Sets the same color for matching parentheses. Icing on the cake :)*
+
+## Expand your horizon
+ If you are looking to expand your emacs configuration, take a take a look at the
+ configuration of our fellow ensonians:
+
+ - https://github.com/kitallis/dotemacs
+ - https://github.com/kirang89/.emacs.d
