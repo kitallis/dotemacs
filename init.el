@@ -155,6 +155,14 @@
             (local-set-key (kbd "<C-return>") 'cider-eval-defun-at-point)))
 
 
+;; Adds some niceties/refactoring support
+(use-package clj-refactor
+  :ensure t
+  :config
+  (add-hook 'clojure-mode-hook
+            (lambda ()
+              (clj-refactor-mode 1))))
+
 
 ;; Aggressively indents your clojure code
 (use-package aggressive-indent
