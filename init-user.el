@@ -5,11 +5,15 @@
 
 
 ;; Theme: monokai.el
-(use-package monokai-theme)
+(use-package monokai-theme
+  :ensure t
+  :init)
 
 
 ;; Enable smex -- for M-x autocomplete
-(use-package smex)
+(use-package smex
+  :ensure t
+  :init)
 (global-set-key (kbd "M-x") 'smex)
 
 
@@ -20,7 +24,9 @@
 
 
 ;; Enable recentf
-(use-package recentf)
+(use-package recentf
+  :ensure t
+  :init)
 (recentf-mode t)
 ;; replace 'find-file-read-only'
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
@@ -36,8 +42,12 @@
 
 
 ;; Golang / gotest
-(use-package go-mode)
-(use-package gotest)
+(use-package go-mode
+  :ensure t
+  :init)
+(use-package gotest
+  :ensure t
+  :init)
 (define-key go-mode-map (kbd "C-x t") 'go-test-current-test)
 (define-key go-mode-map (kbd "C-x f") 'go-test-current-file)
 
@@ -45,6 +55,7 @@
 ;; Projectile
 (projectile-mode t)
 (global-set-key (kbd "s-t") 'projectile-find-file)
+(global-set-key (kbd "s-r") 'projectile-replace)
 (global-set-key (kbd "s-g") 'projectile-grep)
 (global-set-key (kbd "s-p") 'projectile-switch-project)
 
@@ -96,18 +107,27 @@
 (global-set-key (kbd "C-c g") 'magit-status)
 
 
+;; Move backups elsewhere
+(setq backup-directory-alist `(("." . "~/.saves")))
+
 ;; Enable org mode
-(use-package org-mode)
+(use-package org
+  :ensure t
+  :init)
 
 
 ;; Enable undo-tree
-(use-package undo-tree)
+(use-package undo-tree
+  :ensure t
+  :init)
 (global-undo-tree-mode t)
 (global-set-key (kbd "s-Z") 'undo-tree-redo)
 
 
 ;; Enable flycheck
-(use-package flycheck)
+(use-package flycheck
+  :ensure t
+  :init)
 (global-flycheck-mode t)
 
 
