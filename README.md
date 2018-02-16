@@ -36,7 +36,13 @@ Open emacs and you're good to go. Happy Hacking!
 - clojure-mode-extra-font-locking => *Better syntax highlighting for Clojure code*
 - aggressive-indent => *Indenting code as you type*
 - paredit => *Treats s-expressions as blocks for easier navigation/editing*
-- rainbow-delimiters => *Sets the same color for matching parentheses. Icing on the cake :)*
+- rainbow-delimiters => *Sets the same color for matching parentheses. Icing on the
+  cake :)*
+
+## Contributing
+This configuration is kept simple and minimal on purpose. As such, I will not be
+accepting any PR's. It'd be better to simply clone/fork this repo and maintain your
+own configuration.
 
 ## Expand your horizon
  If you are looking to expand your emacs configuration, take a take a look at the
