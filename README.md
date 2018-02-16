@@ -29,14 +29,14 @@ Create a file init-user.el under your emacs.d. Add any customizations you need t
 Open emacs and you're good to go. Happy Hacking!
 
 ## Packages Used
-- use-package => *Package Manager*
-- exec-path-from-shell => *Sets up your path and environment variables from your shell's configuration (.bashprofile, .zshenv, ...)*
-- company => *The autocompletion engine*
-- cider => *Connecting a Clojure buffer to a REPL*
+- use-package                     => *Package Manager*
+- exec-path-from-shell            => *Sets up your path and environment variables from your shell's configuration (.bashprofile, .zshenv, ...)*
+- company                         => *The autocompletion engine*
+- cider                           => *Connecting a Clojure buffer to a REPL*
 - clojure-mode-extra-font-locking => *Better syntax highlighting for Clojure code*
-- aggressive-indent => *Indenting code as you type*
-- paredit => *Treats s-expressions as blocks for easier navigation/editing*
-- rainbow-delimiters => *Sets the same color for matching parentheses. Icing on the
+- aggressive-indent               => *Indenting code as you type*
+- paredit                         => *Treats s-expressions as blocks for easier navigation/editing*
+- rainbow-delimiters              => *Sets the same color for matching parentheses. Icing on the
   cake :)*
 
 ## Contributing
