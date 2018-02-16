@@ -44,3 +44,4 @@ Open emacs and you're good to go. Happy Hacking!
 
  - https://github.com/kitallis/dotemacs
  - https://github.com/kirang89/.emacs.d
+ - https://github.com/samrat/dotemacs
