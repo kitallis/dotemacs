@@ -2,10 +2,10 @@
 
 (require 'package)
 
-
 ;; Define package repositories
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
 
 ;; Load and activate emacs packages. Do this first so that the
 ;; packages are loaded before you start trying to modify them.
@@ -183,3 +183,61 @@
 (when (file-exists-p "~/.emacs.d/init-user.el")
   (setq user-custom-file "~/.emacs.d/init-user.el")
   (load user-custom-file))
+
+
+(set-variable 'cider-stacktrace-frames-background-color "#161616")
+(set-variable 'cider-test-items-background-color "#333333")
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+;; Add greatest ever titlebar
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
+
+
+;; Enable neotreee - fancy file browser
+(use-package neotree
+  :init
+  (use-package all-the-icons)
+
+  :config
+  (global-set-key (kbd "<f5>") 'neotree-toggle)
+
+  (setq-default neo-smart-open t)
+  (setq neo-theme (if (display-graphic-p) 'icons 'nerd))
+  (setq neo-show-hidden-files t)
+  ;; Scale the text down a notch when in a neotree buffer
+  (defun kg/text-scale-down ()
+    (interactive)
+    (progn
+      (text-scale-adjust 0)
+      (text-scale-decrease 0)))
+
+  (add-hook 'neo-after-create-hook
+            (lambda (_)
+              (call-interactively #'kg/text-scale-down))))
+
+
+;; Enable spaceline - fancy modeline
+(use-package spaceline
+  :ensure t
+  :init
+  (require 'spaceline-config)
+  (let ((faces '(mode-line
+		 mode-line-buffer-id
+		 mode-line-emphasis
+		 mode-line-highlight
+		 mode-line-inactive)))
+    (mapc
+     (lambda (face) (set-face-attribute face nil :font "Menlo:weight=light:pixelsize=11"))
+     faces))
+  ;; solves the issue with incorrect seperator colors in modeline
+  ;; powerline now takes sRGB colorspace for rendering
+  (setq powerline-image-apple-rgb t)
+  :config
+  (spaceline-spacemacs-theme)
+  (setq spaceline-workspace-numbers-unicode nil)
+  (setq spaceline-window-numbers-unicode nil)
+  (setq spaceline-org-clock-p nil)
+  (setq spaceline-highlight-face-func 'spaceline-highlight-face-modified))
