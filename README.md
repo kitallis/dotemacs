@@ -40,3 +40,9 @@ Open emacs and you're good to go. Happy Hacking!
 - undo-tree => *Visualize or walk undo/redo trees*
 - flycheck => *Syntax checking for tons of languages*
 - monokai => *Dark and fruity color theme*
+- spaceline => *Better Modeline - the popular spacemacs powerline in regular emacs (theme)
+- neotree => *Side-pane file browser - NerdTree (ViM) like file browser with icons
+
+## Recommended side-installs
+
+- get [all-the-icons](https://github.com/domtronn/all-the-icons.el) for a great neotree experience
