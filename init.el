@@ -222,7 +222,29 @@
 ;; Magit: The only git interface you'll ever need
 (use-package magit :ensure t)
 
+
+;; Enable IDO (Interactively Do Things) mode.
+;; IDO offers an improvement over Emacs' completion engine for common
+;; tasks like opening file, switching buffers etc
+(use-package ido
+  :ensure t
+  :config
+  (setq ido-use-faces t)
+  ;; Enable fuzzy search
+  (setq ido-enable-flex-matching t)
+  ;; Use C-n, C-p or arrow keys to navigate options
+  (setq ido-vertical-define-keys 'C-n-C-p-up-and-down)
+  (ido-everywhere t)
+  (ido-mode 1)
+
+  ;; Make ido-mode display vertically
+  (use-package ido-vertical-mode
+    :ensure t
+    :config (ido-vertical-mode 1)))
+
+
 ;; User customizations
+;; Add your customizations to `init-user.el`
 (when (file-exists-p "~/.emacs.d/init-user.el")
   (setq user-custom-file "~/.emacs.d/init-user.el")
   (load user-custom-file))
