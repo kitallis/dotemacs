@@ -25,6 +25,22 @@
 (setq auto-revert-verbose nil)
 
 
+;; don't show the tool bar
+(tool-bar-mode -1)
+
+
+;; don't show the scroll bar
+(scroll-bar-mode -1)
+
+
+;; Hide cursor in inactive windows
+(setq-default cursor-in-non-selected-windows nil)
+
+
+;; Set default line spacing
+(setq-default line-spacing 0.2)
+
+
 ;; Install use-package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -47,7 +63,9 @@
 
 
 ;; Line numbers
-(global-linum-mode t)
+;; Add some padding when displaying line numbers
+(setq linum-format "%5d ")
+(add-hook 'prog-mode-hook 'linum-mode)
 
 
 ;; Remove trailing whitespace before saving
