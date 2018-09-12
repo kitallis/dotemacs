@@ -1,6 +1,5 @@
 ;; A minimial setup for Clojurians
 
-
 (require 'package)
 
 ;; Define package repositories
@@ -9,10 +8,17 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 
+
 ;; Load and activate emacs packages. Do this first so that the
 ;; packages are loaded before you start trying to modify them.
 ;; This also sets the load path.
 (package-initialize)
+
+
+;; Reduce the frequency of garbage collection by making it happen on
+;; each 50MB of allocated data (the default is on every 0.76MB)
+(setq gc-cons-threshold 50000000)
+
 
 ;; Automatically reload files when they change on disk
 (global-auto-revert-mode 1)
