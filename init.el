@@ -148,7 +148,8 @@
   :ensure t
   :init
   (add-hook 'clojure-mode-hook 'enable-paredit-mode)
-  (add-hook 'cider-repl-mode-hook 'enable-paredit-mode))
+  (add-hook 'cider-repl-mode-hook 'enable-paredit-mode)
+  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode))
 
 
 ;; To add some colors to those boring parens
