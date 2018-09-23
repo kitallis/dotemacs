@@ -33,6 +33,14 @@
 (scroll-bar-mode -1)
 
 
+;; Make the title bar blend with the background color
+;; Set the appearance to light/dark depending on your theme
+(add-to-list 'default-frame-alist
+             '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist
+             '(ns-appearance . dark))
+
+
 ;; Hide cursor in inactive windows
 (setq-default cursor-in-non-selected-windows nil)
 
