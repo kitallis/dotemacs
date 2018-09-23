@@ -94,6 +94,17 @@
 
 ;; Use y/n instead of full yes/no for confirmation messages
 (fset 'yes-or-no-p 'y-or-n-p)
+
+
+;; Use spaces instead of tabs
+(setq tab-width 2)
+(setq js-indent-level 2)
+(setq css-indent-offset 2)
+(setq c-basic-offset 2)
+(setq-default indent-tabs-mode nil)
+(setq-default c-basic-offset 2)
+(setq-default tab-width 2)
+(setq-default c-basic-indent 2)
 ;; Kills the current buffer without displaying the annoying menu.
 ;; A confirmation will be asked for, if the buffer has been modified
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
