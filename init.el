@@ -105,6 +105,10 @@
 (setq-default c-basic-offset 2)
 (setq-default tab-width 2)
 (setq-default c-basic-indent 2)
+
+
+;; Type over selected text
+(delete-selection-mode 1)
 ;; Kills the current buffer without displaying the annoying menu.
 ;; A confirmation will be asked for, if the buffer has been modified
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
