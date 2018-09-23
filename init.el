@@ -76,6 +76,9 @@
             "%b"))))
 
 
+;; Set font and line spacing
+(set-face-attribute 'default nil :font "Menlo 13")
+(setq-default line-spacing 0.3)
 
 
 ;; Line numbers
