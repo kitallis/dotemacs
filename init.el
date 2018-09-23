@@ -109,6 +109,17 @@
 
 ;; Type over selected text
 (delete-selection-mode 1)
+
+
+;; Kill whole line
+(global-set-key (kbd "s-<backspace>") 'kill-whole-line)
+
+
+;; Use Cmd for movement
+(global-set-key (kbd "s-<right>") (kbd "C-e"))  ;; End of line
+(global-set-key (kbd "s-<left>") (kbd "C-a"))   ;; Beginning of line
+
+
 ;; Kills the current buffer without displaying the annoying menu.
 ;; A confirmation will be asked for, if the buffer has been modified
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
