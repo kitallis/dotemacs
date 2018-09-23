@@ -25,6 +25,25 @@
 (setq auto-revert-verbose nil)
 
 
+;; Install use-package
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
+(setq use-package-verbose t)
+(setq-default use-package-always-ensure t)
+
+
+;; Move custom configuration variables set by Emacs, to a seperate file
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
+
+
+;;
+;; APPEARANCE
+;;
+
+
 ;; don't show the tool bar
 (tool-bar-mode -1)
 
@@ -49,15 +68,6 @@
 (setq-default line-spacing 0.2)
 
 
-;; Install use-package
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(require 'use-package)
-(setq use-package-verbose t)
-(setq-default use-package-always-ensure t)
-
-
 ;; Show full file path in the title bar
 (setq
  frame-title-format
@@ -66,8 +76,6 @@
             "%b"))))
 
 
-;; Use y/n instead of full yes/no for confirmation messages
-(fset 'yes-or-no-p 'y-or-n-p)
 
 
 ;; Line numbers
@@ -76,6 +84,13 @@
 (add-hook 'prog-mode-hook 'linum-mode)
 
 
+;;
+;; SANE DEFAULTS
+;;
+
+
+;; Use y/n instead of full yes/no for confirmation messages
+(fset 'yes-or-no-p 'y-or-n-p)
 ;; Kills the current buffer without displaying the annoying menu.
 ;; A confirmation will be asked for, if the buffer has been modified
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
@@ -83,13 +98,6 @@
 
 ;; Remove trailing whitespace before saving
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-
-;; M-x with recently/frequently used commands
-(use-package smex
-  :config
-  (global-set-key (kbd "M-x") 'smex)
-  (global-set-key (kbd "s-x") 'smex))
 
 
 ;; On OS X, an Emacs instance started from the graphical user
@@ -106,9 +114,11 @@
   (exec-path-from-shell-initialize))
 
 
-;; Move custom configuration variables set by Emacs, to a seperate file
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file 'noerror)
+;; M-x with recently/frequently used commands
+(use-package smex
+  :config
+  (global-set-key (kbd "M-x") 'smex)
+  (global-set-key (kbd "s-x") 'smex))
 
 
 ;; Install and setup company-mode for autocompletion
