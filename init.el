@@ -198,8 +198,9 @@
 
 ;; Enable neotreee - fancy file browser
 (use-package neotree
+  :ensure t
   :init
-  (use-package all-the-icons)
+  (use-package all-the-icons :ensure t)
 
   :config
   (global-set-key (kbd "<f5>") 'neotree-toggle)
