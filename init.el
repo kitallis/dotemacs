@@ -64,8 +64,8 @@
 (setq-default cursor-in-non-selected-windows nil)
 
 
-;; Set default line spacing
-(setq-default line-spacing 0.2)
+;; ;; Set default line spacing
+;; (setq-default line-spacing 0.2)
 
 
 ;; Show full file path in the title bar
@@ -76,9 +76,9 @@
             "%b"))))
 
 
-;; Set font and line spacing
-(set-face-attribute 'default nil :font "Menlo 13")
-(setq-default line-spacing 0.3)
+;; ;; Set font and line spacing
+ (set-face-attribute 'default nil :font "Inconsolata LGC 15")
+;; (setq-default line-spacing 0.3)
 
 
 ;; Line numbers
@@ -153,6 +153,8 @@
 ;; Install and setup company-mode for autocompletion
 (use-package company
   :ensure t
+  ;; :bind (("C-p" . company-select-previous)
+  ;;        ("C-n" . company-select-next))
   :init
   (add-hook 'prog-mode-hook 'company-mode)
   :config
@@ -160,18 +162,20 @@
   (setq company-tooltip-limit 10)
   (setq company-idle-delay 0.2)
   (setq company-echo-delay 0)
-  (setq company-minimum-prefix-length 3)
+  (setq company-minimum-prefix-length 2)
   (setq company-require-match nil)
   (setq company-selection-wrap-around t)
   (setq company-tooltip-align-annotations t)
-  (setq company-tooltip-flip-when-above t)
+  (setq company-tooltip-flip-when-above nil)
+  (setq company-dabbrev-ignore-case nil
+        company-dabbrev-downcase nil)
   ;; weight by frequency
   (setq company-transformers '(company-sort-by-occurrence)))
 
-
 ;; Better syntax highlighting
 (use-package clojure-mode-extra-font-locking
-  :ensure t)
+  :ensure t
+  :pin melpa-stable)
 
 
 ;; Highlight matching parentheses
@@ -194,9 +198,9 @@
 (use-package paredit
   :ensure t
   :init
-  (add-hook 'clojure-mode-hook 'enable-paredit-mode)
-  (add-hook 'cider-repl-mode-hook 'enable-paredit-mode)
-  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode))
+  (add-hook 'clojure-mode-hook #'enable-paredit-mode)
+  (add-hook 'cider-repl-mode-hook #'enable-paredit-mode)
+  (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode))
 
 
 ;; To add some colors to those boring parens
@@ -208,6 +212,7 @@
 ;; Cider integrates a Clojure buffer with a REPL
 (use-package cider
   :ensure t
+  :pin melpa-stable
   :init
   (setq cider-repl-pop-to-buffer-on-connect t
         cider-show-error-buffer t
@@ -218,12 +223,12 @@
         cider-repl-use-clojure-font-lock t
         cider-docview-fill-column 70
         cider-stacktrace-fill-column 76
-        ;; Stop error buffer from popping up while working in buffers other than REPL:
         nrepl-popup-stacktraces nil
         nrepl-log-messages nil
         nrepl-hide-special-buffers t
         cider-repl-use-pretty-printing t
-        cider-repl-result-prefix ";; => ")
+        cider-repl-result-prefix ";; => "
+        cider-repl-display-help-banner nil)
 
   :config
   (add-hook 'cider-mode-hook #'eldoc-mode)
@@ -237,6 +242,7 @@
 ;; Adds some niceties/refactoring support
 (use-package clj-refactor
   :ensure t
+  :pin melpa-stable
   :config
   (add-hook 'clojure-mode-hook
             (lambda ()
@@ -254,6 +260,8 @@
 ;; Operate (list, search, replace....) on files at a project level.
 (use-package projectile
   :ensure t
+  :bind (:map projectile-mode-map
+              ("s-p" . projectile-command-map))
   :init
   (setq-default projectile-cache-file
                 (expand-file-name ".projectile-cache" user-emacs-directory))
@@ -261,37 +269,24 @@
 
   :config
   (projectile-mode)
+  (setq projectile-completion-system 'ivy)
   (setq-default projectile-enable-caching t
+                projectile-mode-line-prefix ""
+                projectile-sort-order 'recentf
                 ;; Show project (if any) name in modeline
                 projectile-mode-line '(:eval (projectile-project-name))))
 
 
 ;; Magit: The only git interface you'll ever need
-(use-package magit :ensure t)
-
-
-;; Enable IDO (Interactively Do Things) mode.
-;; IDO offers an improvement over Emacs' completion engine for common
-;; tasks like opening file, switching buffers etc
-(use-package ido
+(use-package magit
   :ensure t
+  :bind ("C-x g" . 'magit-status)
   :config
-  (setq ido-use-faces t)
-  ;; Enable fuzzy search
-  (setq ido-enable-flex-matching t)
-  ;; Use C-n, C-p or arrow keys to navigate options
-  (setq ido-vertical-define-keys 'C-n-C-p-up-and-down)
-  (ido-everywhere t)
-  (ido-mode 1)
-
-  ;; Make ido-mode display vertically
-  (use-package ido-vertical-mode
-    :ensure t
-    :config (ido-vertical-mode 1)))
-
+  (setq magit-set-upstream-on-push 'askifnotset))
 
 ;; User customizations
 ;; Add your customizations to `init-user.el`
 (when (file-exists-p "~/.emacs.d/init-user.el")
   (setq user-custom-file "~/.emacs.d/init-user.el")
-  (load user-custom-file))
+  (load user-custom-file)
+  (put 'downcase-region 'disabled nil))
