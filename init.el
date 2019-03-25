@@ -77,14 +77,14 @@
 
 
 ;; ;; Set font and line spacing
- (set-face-attribute 'default nil :font "Inconsolata LGC 15")
+;; (set-face-attribute 'default nil :font "Inconsolata LGC 15")
 ;; (setq-default line-spacing 0.3)
 
 
 ;; Line numbers
 ;; Add some padding when displaying line numbers
 (setq linum-format "%5d ")
-(add-hook 'prog-mode-hook 'linum-mode)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 
 ;;
@@ -153,8 +153,8 @@
 ;; Install and setup company-mode for autocompletion
 (use-package company
   :ensure t
-  ;; :bind (("C-p" . company-select-previous)
-  ;;        ("C-n" . company-select-next))
+  :bind (("C-p" . company-select-previous)
+         ("C-n" . company-select-next))
   :init
   (add-hook 'prog-mode-hook 'company-mode)
   :config
@@ -208,6 +208,8 @@
   :ensure t
   :init (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
+(define-clojure-indent
+  (defrecord 1))
 
 ;; Cider integrates a Clojure buffer with a REPL
 (use-package cider
@@ -290,3 +292,4 @@
   (setq user-custom-file "~/.emacs.d/init-user.el")
   (load user-custom-file)
   (put 'downcase-region 'disabled nil))
+(put 'narrow-to-region 'disabled nil)

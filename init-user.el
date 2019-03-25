@@ -2,12 +2,12 @@
 (set-default-coding-systems 'utf-8)
 
 (set-face-attribute 'default nil
-                    :family "Iosevka Term"
-                    :height 150
+                    :family "Office Code Pro"
+                    :height 130
                     :weight 'normal
                     :width 'normal)
 
-(setq-default line-spacing 0.1
+(setq-default line-spacing 0.2
               help-window-select t)
 
 ;; workaround for alt not working as meta key
@@ -32,10 +32,10 @@
 
 ;; ============= THIRD PARTY PACKAGES ================
 
-(use-package oceanic-theme
+(use-package monokai-theme
   :ensure t
   :config
-  (load-theme 'oceanic))
+  (load-theme 'monokai))
 
 (use-package expand-region
   :ensure t
@@ -43,7 +43,11 @@
 
 (use-package ido-vertical-mode
   :ensure t
-  :config (ido-vertical-mode 1))
+  :config
+  (ido-vertical-mode 1)
+  (setq ido-use-faces t
+        ido-vertical-show-count t
+        ido-vertical-define-keys 'C-n-and-C-p-only))
 
 (use-package ivy
   :ensure t
@@ -82,7 +86,17 @@
         org-default-notes-file (concat org-directory "/notes.txt")
         org-export-coding-system 'utf-8
         org-ellipsis " ▼ "
-        org-startup-indented t))
+        org-startup-indented t
+        org-src-fontify-natively t
+        org-src-preserve-indentation t)
+  (setq org-capture-templates
+        '(
+          ("l" "Add a link to the linklog" entry
+           (file+olp+datetree (lambda () (concat org-directory "/linklog.org")))
+           "**** %?")
+          )))
+(add-hook 'org-mode-hook (lambda () (when (fboundp 'org-mac-grab-link)
+                                      (load-file "~/.emacs.d/org-mac-link.el"))))
 
 (use-package multiple-cursors
   :ensure t
@@ -103,7 +117,7 @@
         doom-modeline-minor-modes nil
         doom-modeline-github nil
         doom-modeline-version nil
-        doom-modeline-height 10))
+        doom-modeline-height 25))
 
 (use-package undo-tree
   :ensure t
@@ -122,17 +136,52 @@
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "pandoc"))
+  :init (setq markdown-command "pandoc")
+  :config
+  (add-hook 'gfm-mode-hook 'linum-mode)
+  (add-hook 'markdown-mode-hook 'linum-mode))
 
 (use-package smartparens
   :ensure t
   :init
-  (add-hook 'markdown-mode-hook #'smartparens-mode))
+  (add-hook 'markdown-mode-hook 'smartparens-mode))
 
 (use-package hl-todo
   :ensure t
   :config
   (global-hl-todo-mode t))
+
+;; (use-package perspective
+;;   :ensure t
+;;   :disabled
+;;   :config
+;;   (progn
+;;     (persp-mode)
+;;     (use-package persp-projectile :ensure t)))
+
+(use-package yaml-mode :ensure t)
+(use-package json-mode :ensure t)
+(use-package zoom-window :ensure t)
+
+(use-package counsel-projectile
+  :ensure t
+  :config
+  (counsel-projectile-mode))
+
+(use-package dumb-jump
+  :config
+  (add-hook 'programming-mode-hook 'dumb-jump-mode))
+
+;; (use-package all-the-icons-ivy
+;;   :defer t
+;;   :after (all-the-icons ivy)
+;;   :custom (all-the-icons-ivy-buffer-commands '(ivy-recentf ivy-switch-buffer))
+;;   :config
+;;   (add-to-list 'all-the-icons-ivy-file-commands 'counsel-dired-jump)
+;;   (add-to-list 'all-the-icons-ivy-file-commands 'counsel-find-library)
+;;   (add-to-list 'all-the-icons-ivy-file-commands 'counsel-find-file)
+;;   (add-to-list 'all-the-icons-ivy-file-commands 'counsel-projectile-find-file)
+;;   (all-the-icons-ivy-setup))
 
 ;; =============== EFUNS ==================
 
@@ -199,14 +248,33 @@
   (kg/set-fringe-background)
   (setq linum-format "%5d "))
 
+(defun kg/delete-this-buffer-and-file ()
+  "Remove file connected to current buffer and kill buffer."
+  (interactive)
+  (let ((filename (buffer-file-name))
+        (buffer (current-buffer))
+        (name (buffer-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (error "Buffer '%s' is not visiting a file!" name)
+      (when (yes-or-no-p "Are you sure you want to remove this file? ")
+        (delete-file filename)
+        (kill-buffer buffer)
+        (message "File '%s' successfully removed" filename)))))
+
 ;; ================ GLOBAL KEYBINDINGS ++++++++++++++++++++
 
 (global-set-key (kbd "s-l") 'goto-line)
 (global-set-key (kbd "s-t") 'projectile-find-file)
 (global-set-key (kbd "M-j") (lambda () (interactive) (join-line -1)))
-(global-set-key (kbd "s-{") 'bs-cycle-previous)
-(global-set-key (kbd "s-}") 'bs-cycle-next)
+(global-set-key (kbd "s-{") 'previous-buffer)
+(global-set-key (kbd "s-}") 'next-buffer)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x 3") 'kg/split-right-and-move)
 (global-set-key (kbd "C-x 2") 'kg/split-below-and-move)
 (global-set-key (kbd "C-a") 'kg/beginning-of-line-dwim)
 (global-set-key [(meta shift down)] 'kg/duplicate-start-of-line-or-region)
+(global-set-key (kbd "C-c C-l") 'org-capture)
+
+
+;; === ============ ADD THEME FOLDER =========================
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
