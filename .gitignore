@@ -3,3 +3,9 @@ custom.el
 elpa/
 network-security.data
 *.el~
+recentf
+bookmarks
+auto-save-list
+.mc-lists.el
+transient
+url
