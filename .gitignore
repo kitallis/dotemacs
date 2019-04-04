@@ -9,3 +9,4 @@ auto-save-list
 .mc-lists.el
 transient
 url
+ido.last
