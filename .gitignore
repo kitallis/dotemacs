@@ -10,3 +10,6 @@ auto-save-list
 transient
 url
 ido.last
+.projectile-cache
+*.eld
+eshell
