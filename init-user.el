@@ -30,6 +30,10 @@
 ;; Rewrite selected text
 (delete-selection-mode 1)
 
+(setq org-todo-keywords
+      '((sequence "TODO" "DOING" "|" "DONE")))
+
+
 ;; ============= THIRD PARTY PACKAGES ================
 
 (use-package monokai-theme
