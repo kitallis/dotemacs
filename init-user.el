@@ -2,12 +2,12 @@
 (set-default-coding-systems 'utf-8)
 
 (set-face-attribute 'default nil
-                    :family "Office Code Pro"
-                    :height 130
+                    :family "Fira Code"
+                    :height 160
                     :weight 'normal
                     :width 'normal)
 
-(setq-default line-spacing 0.2
+(setq-default line-spacing 0.3
               help-window-select t)
 
 ;; workaround for alt not working as meta key
