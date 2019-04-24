@@ -266,6 +266,14 @@
         (kill-buffer buffer)
         (message "File '%s' successfully removed" filename)))))
 
+(defun kg/search-marked-region-if-available (start end)
+  "Pre-fill counsel-rg with marked region if available."
+    (interactive "r")
+    (if (use-region-p)
+        (let ((regionp (buffer-substring start end)))
+          (counsel-rg regionp))
+      (counsel-rg)))
+
 ;; ================ GLOBAL KEYBINDINGS ++++++++++++++++++++
 
 (global-set-key (kbd "s-l") 'goto-line)
