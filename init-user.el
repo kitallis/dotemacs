@@ -74,11 +74,16 @@
 
 (use-package counsel
   :ensure t
-  :init (use-package rg :ensure t)
-  :bind (("s-g" . 'counsel-rg)
+  :init (use-package rg
+          :ensure t
+          :config
+          (setq rg-command-line-flags '("-w"))
+          (setq rg-ignore-case 'smart))
+  :bind (("s-g" . #'kg/search-marked-region-if-available)
          ("C-x C-r" . 'counsel-recentf))
   :config
-  (global-set-key (kbd "s-g") 'counsel-rg)
+  (global-set-key (kbd "s-g") #'kg/search-marked-region-if-available)
+  (setq counsel-rg-base-command "rg -i -w --no-heading --line-number %s .")
   (setq recentf-max-saved-items 50)
   (setq recentf-auto-cleanup (* 24 60 60))
   (global-set-key (kbd "C-x C-r") 'counsel-recentf))
