@@ -17,7 +17,8 @@
 
 ;; Reduce the frequency of garbage collection by making it happen on
 ;; each 50MB of allocated data (the default is on every 0.76MB)
-(setq gc-cons-threshold 50000000)
+(setq gc-cons-threshold 50000000
+      gc-cons-percentage 0.6)
 
 
 ;; Automatically reload files when they change on disk
@@ -298,3 +299,9 @@
   (load user-custom-file)
   (put 'downcase-region 'disabled nil))
 (put 'narrow-to-region 'disabled nil)
+
+;; Reset GC to reasonable defaults
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold 16777216
+                  gc-cons-percentage 0.1)))
