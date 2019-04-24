@@ -236,9 +236,14 @@
   (add-hook 'cider-mode-hook #'eldoc-mode)
   (add-hook 'cider-repl-mode-hook #'paredit-mode)
   (add-hook 'cider-repl-mode-hook #'company-mode)
+  (add-hook 'cider-repl-mode-hook
+            (lambda ()
+              (local-set-key (kbd "C-l") 'cider-repl-clear-buffer)))
   (add-hook 'cider-mode-hook #'company-mode)
   (add-hook 'cider-mode-hook
-            (local-set-key (kbd "<C-return>") 'cider-eval-defun-at-point)))
+            (lambda ()
+              (local-set-key (kbd "<C-return>") 'cider-eval-defun-at-point)
+              (local-set-key (kbd "C-c C-n") 'cider-eval-buffer))))
 
 
 ;; Adds some niceties/refactoring support
