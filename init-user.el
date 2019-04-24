@@ -176,16 +176,17 @@
   :config
   (add-hook 'programming-mode-hook 'dumb-jump-mode))
 
-;; (use-package all-the-icons-ivy
-;;   :defer t
-;;   :after (all-the-icons ivy)
-;;   :custom (all-the-icons-ivy-buffer-commands '(ivy-recentf ivy-switch-buffer))
-;;   :config
-;;   (add-to-list 'all-the-icons-ivy-file-commands 'counsel-dired-jump)
-;;   (add-to-list 'all-the-icons-ivy-file-commands 'counsel-find-library)
-;;   (add-to-list 'all-the-icons-ivy-file-commands 'counsel-find-file)
-;;   (add-to-list 'all-the-icons-ivy-file-commands 'counsel-projectile-find-file)
-;;   (all-the-icons-ivy-setup))
+
+(use-package org-journal
+  :ensure t
+  :bind (("C-c t" . journal-file-today)
+         ("C-c y" . journal-file-yesterday))
+  :custom
+   ;; (org-journal-find-file #'find-file)
+  (org-journal-dir "~/journal")
+  (org-journal-file-format "%Y-%m-%d.org")
+  (org-journal-date-format "#+TITLE: Journal Entry: %e %b %Y (%A)")
+  (org-journal-date-format "%A, %d %B %Y"))
 
 ;; =============== EFUNS ==================
 
