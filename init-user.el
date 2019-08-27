@@ -1,9 +1,15 @@
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 
+;; (set-face-attribute 'default nil
+;;                     :family "Office Code Pro"
+;;                     :height 150
+;;                     :weight 'normal
+;;                     :width 'normal)
+
 (set-face-attribute 'default nil
-                    :family "Fira Code"
-                    :height 160
+                    :family "DejaVu Sans Mono"
+                    :height 150
                     :weight 'normal
                     :width 'normal)
 
@@ -27,6 +33,12 @@
       default-file-name-coding-system 'utf-8
       buffer-file-coding-system 'utf-8)
 
+(set-default 'cursor-type '(bar . 2))
+(set-cursor-color "#6c98ed")
+
+(global-hl-line-mode t)
+(set-face-attribute hl-line-face nil :underline t)
+
 ;; Rewrite selected text
 (delete-selection-mode 1)
 
@@ -36,10 +48,16 @@
 
 ;; ============= THIRD PARTY PACKAGES ================
 
-(use-package monokai-theme
+;; (use-package darkokai-theme
+;;   :ensure t
+;;   :config
+;;   (setq darkokai-mode-line-padding 1)
+;;   (load-theme 'darkokai))
+
+(use-package monokai-pro-theme
   :ensure t
   :config
-  (load-theme 'monokai))
+  (load-theme 'monokai-pro t))
 
 (use-package expand-region
   :ensure t
@@ -79,14 +97,17 @@
           :config
           (setq rg-command-line-flags '("-w"))
           (setq rg-ignore-case 'smart))
-  :bind (("s-g" . #'kg/search-marked-region-if-available)
-         ("C-x C-r" . 'counsel-recentf))
   :config
-  (global-set-key (kbd "s-g") #'kg/search-marked-region-if-available)
+  (global-set-key (kbd "s-g") 'counsel-rg)
+  (global-set-key (kbd "C-x C-r") 'counsel-recentf)
   (setq counsel-rg-base-command "rg -i -w --no-heading --line-number %s .")
   (setq recentf-max-saved-items 50)
-  (setq recentf-auto-cleanup (* 24 60 60))
-  (global-set-key (kbd "C-x C-r") 'counsel-recentf))
+  (setq recentf-auto-cleanup (* 24 60 60)))
+
+(use-package swiper
+  :ensure t
+  :config
+  (global-set-key (kbd "s-f") 'swiper))
 
 (use-package org
   :ensure t
@@ -103,9 +124,21 @@
           ("l" "Add a link to the linklog" entry
            (file+olp+datetree (lambda () (concat org-directory "/linklog.org")))
            "**** %?")
-          )))
-(add-hook 'org-mode-hook (lambda () (when (fboundp 'org-mac-grab-link)
-                                      (load-file "~/.emacs.d/org-mac-link.el"))))
+          ))
+  (add-hook 'org-mode-hook
+            (lambda () (when (fboundp 'org-mac-grab-link)
+                         (load-file "~/.emacs.d/org-mac-link.el"))))
+  (use-package org-journal
+    :ensure t
+    :bind (("C-c y" . org-journal-previous-entry))
+    :config
+    (global-set-key (kbd "C-c t") (lambda () (interactive) (org-journal-new-entry t)))
+    :custom
+    (org-journal-find-file #'find-file)
+    (org-journal-dir "~/Box Sync/Kiran/journal")
+    (org-journal-file-format "%Y-%m-%d.org")
+    ;; (org-journal-date-format "#+TITLE: Journal Entry: %e %b %Y (%A)")
+    (org-journal-date-format "%A, %d %B %Y")))
 
 (use-package multiple-cursors
   :ensure t
@@ -121,23 +154,18 @@
   :hook (after-init . doom-modeline-init)
   :config
   (setq doom-modeline-buffer-file-name-style 'truncate-upto-project
-        doom-modeline-icon t
-        doom-modeline-major-mode-icon t
+        doom-modeline-icon nil
+        doom-modeline-major-mode-icon nil
         doom-modeline-minor-modes nil
         doom-modeline-github nil
         doom-modeline-version nil
-        doom-modeline-height 25))
+        doom-modeline-height 10))
 
 (use-package undo-tree
   :ensure t
   :bind ("s-Z" . 'undo-tree-redo)
   :config
   (global-undo-tree-mode))
-
-(use-package zoom-window
-  :ensure t
-  :config
-  (setq zoom-window-mode-line-color "green"))
 
 (use-package markdown-mode
   :ensure t
@@ -160,38 +188,38 @@
   :config
   (global-hl-todo-mode t))
 
-;; (use-package perspective
-;;   :ensure t
-;;   :disabled
-;;   :config
-;;   (progn
-;;     (persp-mode)
-;;     (use-package persp-projectile :ensure t)))
-
 (use-package yaml-mode :ensure t)
 (use-package json-mode :ensure t)
-(use-package zoom-window :ensure t)
 
 (use-package counsel-projectile
   :ensure t
   :config
   (counsel-projectile-mode))
 
-(use-package dumb-jump
+(use-package rust-mode
   :config
-  (add-hook 'programming-mode-hook 'dumb-jump-mode))
+  (add-hook 'rust-mode-hook #'flycheck-mode)
+  (add-hook 'rust-mode-hook #'smartparens-mode)
+  (add-hook 'rust-mode-hook
+            (lambda ()
+              (local-set-key (kbd "C-c <tab>") #'rust-format-buffer)))
 
+  (use-package racer
+    :init
+    (setq racer-rust-src-path
+          "/Users/kiran/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src")
+    :config
+    (add-hook 'rust-mode-hook #'racer-mode)
+    (add-hook 'racer-mode-hook #'eldoc-mode)
+    (add-hook 'racer-mode-hook #'company-mode)
+    (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+    (setq company-tooltip-align-annotations t))
 
-(use-package org-journal
-  :ensure t
-  :bind (("C-c t" . journal-file-today)
-         ("C-c y" . journal-file-yesterday))
-  :custom
-   ;; (org-journal-find-file #'find-file)
-  (org-journal-dir "~/journal")
-  (org-journal-file-format "%Y-%m-%d.org")
-  (org-journal-date-format "#+TITLE: Journal Entry: %e %b %Y (%A)")
-  (org-journal-date-format "%A, %d %B %Y"))
+  (use-package cargo
+    :config (add-hook 'rust-mode-hook 'cargo-minor-mode))
+
+  (use-package flycheck-rust
+    :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 
 ;; =============== EFUNS ==================
 
@@ -254,7 +282,8 @@
 (defun kg/reset-ui ()
   "Reset some UI components after changing a theme."
   (interactive)
-  (fringe-mode 10)
+  ;; (fringe-mode 10)
+  (fringe-mode '(0 . 0))
   (kg/set-fringe-background)
   (setq linum-format "%5d "))
 
@@ -296,3 +325,4 @@
 
 ;; === ============ ADD THEME FOLDER =========================
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+;; (load-theme 'molokai)

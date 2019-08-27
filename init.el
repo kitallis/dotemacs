@@ -199,9 +199,9 @@
 (use-package paredit
   :ensure t
   :init
-  (add-hook 'clojure-mode-hook #'enable-paredit-mode)
-  (add-hook 'cider-repl-mode-hook #'enable-paredit-mode)
-  (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode))
+  (add-hook 'clojure-mode-hook 'enable-paredit-mode)
+  (add-hook 'cider-repl-mode-hook 'enable-paredit-mode)
+  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode))
 
 
 ;; To add some colors to those boring parens
@@ -255,6 +255,13 @@
   (add-hook 'clojure-mode-hook
             (lambda ()
               (clj-refactor-mode 1))))
+
+(use-package flycheck-clj-kondo
+  :ensure t
+  :config
+  (remove-hook 'clojure-mode-hook
+               (lambda ()
+                 (require 'flycheck-clj-kondo))))
 
 
 ;; Aggressively indents your clojure code
