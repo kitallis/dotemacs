@@ -224,6 +224,20 @@
   (use-package flycheck-rust
     :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 
+(use-package go-mode)
+
+(use-package ivy-posframe
+  :disabled t
+  :config
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center)))
+  (ivy-posframe-mode 1))
+
+(use-package fast-scroll
+  :pin melpa-stable
+  :config
+  (fast-scroll-config)
+  (fast-scroll-mode 1))
+
 ;; =============== EFUNS ==================
 
 (defun kg/split-below-and-move ()
