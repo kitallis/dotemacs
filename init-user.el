@@ -153,13 +153,16 @@
   :pin melpa-stable
   :hook (after-init . doom-modeline-init)
   :config
-  (setq doom-modeline-buffer-file-name-style 'truncate-upto-project
+  (setq doom-modeline-buffer-file-name-style 'file-name
         doom-modeline-icon nil
         doom-modeline-major-mode-icon nil
         doom-modeline-minor-modes nil
         doom-modeline-github nil
         doom-modeline-version nil
-        doom-modeline-height 10))
+        doom-modeline-height 10
+        doom-modeline-bar-width 3)
+  (set-face-attribute 'mode-line nil :height 130)
+  (set-face-attribute 'mode-line-inactive nil :height 130))
 
 (use-package undo-tree
   :ensure t
