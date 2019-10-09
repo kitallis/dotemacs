@@ -8,12 +8,12 @@
 ;;                     :width 'normal)
 
 (set-face-attribute 'default nil
-                    :family "DejaVu Sans Mono"
+                    :family "Noto Sans Mono"
                     :height 150
                     :weight 'normal
                     :width 'normal)
 
-(setq-default line-spacing 0.3
+(setq-default line-spacing 0.2
               help-window-select t)
 
 ;; workaround for alt not working as meta key
@@ -37,7 +37,7 @@
 (set-cursor-color "#6c98ed")
 
 (global-hl-line-mode t)
-(set-face-attribute hl-line-face nil :underline t)
+(set-face-attribute hl-line-face nil :underline nil)
 
 ;; Rewrite selected text
 (delete-selection-mode 1)
@@ -48,11 +48,11 @@
 
 ;; ============= THIRD PARTY PACKAGES ================
 
-;; (use-package darkokai-theme
-;;   :ensure t
-;;   :config
-;;   (setq darkokai-mode-line-padding 1)
-;;   (load-theme 'darkokai))
+(use-package darkokai-theme
+  :disabled t
+  :config
+  (setq darkokai-mode-line-padding 1)
+  (load-theme 'darkokai))
 
 (use-package monokai-pro-theme
   :ensure t
