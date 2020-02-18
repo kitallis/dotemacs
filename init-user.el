@@ -1,15 +1,9 @@
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 
-;; (set-face-attribute 'default nil
-;;                     :family "Office Code Pro"
-;;                     :height 150
-;;                     :weight 'normal
-;;                     :width 'normal)
-
 (set-face-attribute 'default nil
-                    :family "Noto Sans Mono"
-                    :height 150
+                    :family "Office Code Pro"
+                    :height 130
                     :weight 'normal
                     :width 'normal)
 
@@ -31,13 +25,13 @@
       auto-save-default nil
       vc-handled-backends '(Git)
       default-file-name-coding-system 'utf-8
-      buffer-file-coding-system 'utf-8)
+      buffer-file-coding-system 'utf-8
+      org-ellipsis " ▶")
 
-(set-default 'cursor-type '(bar . 2))
-(set-cursor-color "#6c98ed")
+(set-default 'cursor-type t)
 
-(global-hl-line-mode t)
-(set-face-attribute hl-line-face nil :underline nil)
+(global-hl-line-mode nil)
+(set-face-attribute hl-line-face nil :underline t)
 
 ;; Rewrite selected text
 (delete-selection-mode 1)
@@ -45,19 +39,29 @@
 (setq org-todo-keywords
       '((sequence "TODO" "DOING" "|" "DONE")))
 
+;; ======
+;; THEMES
+;; ======
 
-;; ============= THIRD PARTY PACKAGES ================
-
+(use-package monokai-pro-theme)
+(use-package nimbus-theme :disabled t)
+(use-package srcery-theme :disabled t)
+(use-package nord-theme :disabled t)
 (use-package darkokai-theme
   :disabled t
   :config
   (setq darkokai-mode-line-padding 1)
   (load-theme 'darkokai))
-
-(use-package monokai-pro-theme
-  :ensure t
+(use-package doom-themes
+  :disabled t
   :config
-  (load-theme 'monokai-pro t))
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
+  (load-theme 'doom-challenger-deep))
+
+;; ==========================
+;; OTHER THIRD PARTY PACKAGES
+;; ==========================
 
 (use-package expand-region
   :ensure t
