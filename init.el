@@ -139,7 +139,6 @@
 ;; environment variables from the user's shell.
 ;; https://github.com/purcell/exec-path-from-shell
 (use-package exec-path-from-shell
-  :ensure t
   :config
   (exec-path-from-shell-initialize))
 
@@ -153,7 +152,6 @@
 
 ;; Install and setup company-mode for autocompletion
 (use-package company
-  :ensure t
   :bind (("C-p" . company-select-previous)
          ("C-n" . company-select-next))
   :init
@@ -197,7 +195,6 @@
 
 ;; Paredit makes it easier to navigate/edit s-expressions as blocks.
 (use-package paredit
-  :ensure t
   :init
   (add-hook 'clojure-mode-hook 'enable-paredit-mode)
   (add-hook 'cider-repl-mode-hook 'enable-paredit-mode)
@@ -206,7 +203,6 @@
 
 ;; To add some colors to those boring parens
 (use-package rainbow-delimiters
-  :ensure t
   :init (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 (define-clojure-indent
@@ -214,8 +210,6 @@
 
 ;; Cider integrates a Clojure buffer with a REPL
 (use-package cider
-  :ensure t
-  :pin melpa-stable
   :init
   (setq cider-repl-pop-to-buffer-on-connect t
         cider-show-error-buffer t
@@ -249,15 +243,12 @@
 
 ;; Adds some niceties/refactoring support
 (use-package clj-refactor
-  :ensure t
-  :pin melpa-stable
   :config
   (add-hook 'clojure-mode-hook
             (lambda ()
               (clj-refactor-mode 1))))
 
 (use-package flycheck-clj-kondo
-  :ensure t
   :config
   (remove-hook 'clojure-mode-hook
                (lambda ()
@@ -266,7 +257,6 @@
 
 ;; Aggressively indents your clojure code
 (use-package aggressive-indent
-  :ensure t
   :commands (aggressive-indent-mode)
   :config
   (add-hook 'clojure-mode-hook 'aggressive-indent-mode))
@@ -274,7 +264,6 @@
 
 ;; Operate (list, search, replace....) on files at a project level.
 (use-package projectile
-  :ensure t
   :bind (:map projectile-mode-map
               ("s-p" . projectile-command-map))
   :init
@@ -294,7 +283,6 @@
 
 ;; Magit: The only git interface you'll ever need
 (use-package magit
-  :ensure t
   :bind ("C-x g" . 'magit-status)
   :config
   (setq magit-set-upstream-on-push 'askifnotset))

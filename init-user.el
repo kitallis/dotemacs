@@ -64,11 +64,9 @@
 ;; ==========================
 
 (use-package expand-region
-  :ensure t
   :config (global-set-key (kbd "C-;") 'er/expand-region))
 
 (use-package ido-vertical-mode
-  :ensure t
   :config
   (ido-vertical-mode 1)
   (setq ido-use-faces t
@@ -76,7 +74,6 @@
         ido-vertical-define-keys 'C-n-and-C-p-only))
 
 (use-package ivy
-  :ensure t
   :bind ("s-b". 'ivy-switch-buffer)
   :config
   (ivy-mode 1)
@@ -90,14 +87,11 @@
 
   ;; (global-set-key (kbd "s-b") 'ivy-switch-buffer)
   (use-package flx
-    :ensure t
     :init
     (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))))
 
 (use-package counsel
-  :ensure t
   :init (use-package rg
-          :ensure t
           :config
           (setq rg-command-line-flags '("-w"))
           (setq rg-ignore-case 'smart))
@@ -109,12 +103,10 @@
   (setq recentf-auto-cleanup (* 24 60 60)))
 
 (use-package swiper
-  :ensure t
   :config
   (global-set-key (kbd "s-f") 'swiper))
 
 (use-package org
-  :ensure t
   :config
   (setq org-directory "~/Box Sync/org-notes"
         org-default-notes-file (concat org-directory "/notes.txt")
@@ -145,7 +137,6 @@
     (org-journal-date-format "%A, %d %B %Y")))
 
 (use-package multiple-cursors
-  :ensure t
   :config
   (setq-default mc/edit-lines-empty-lines 'ignore
                 mc/insert-numbers-default 1)
@@ -153,8 +144,6 @@
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this))
 
 (use-package doom-modeline
-  :ensure t
-  :pin melpa-stable
   :hook (after-init . doom-modeline-init)
   :config
   (setq doom-modeline-buffer-file-name-style 'file-name
@@ -169,13 +158,11 @@
   (set-face-attribute 'mode-line-inactive nil :height 130))
 
 (use-package undo-tree
-  :ensure t
   :bind ("s-Z" . 'undo-tree-redo)
   :config
   (global-undo-tree-mode))
 
 (use-package markdown-mode
-  :ensure t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
@@ -186,12 +173,10 @@
   (add-hook 'markdown-mode-hook 'linum-mode))
 
 (use-package smartparens
-  :ensure t
   :init
   (add-hook 'markdown-mode-hook 'smartparens-mode))
 
 (use-package hl-todo
-  :ensure t
   :config
   (global-hl-todo-mode t))
 
@@ -199,7 +184,6 @@
 (use-package json-mode :ensure t)
 
 (use-package counsel-projectile
-  :ensure t
   :config
   (counsel-projectile-mode))
 
