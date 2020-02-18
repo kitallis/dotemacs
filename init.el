@@ -172,9 +172,7 @@
   (setq company-transformers '(company-sort-by-occurrence)))
 
 ;; Better syntax highlighting
-(use-package clojure-mode-extra-font-locking
-  :ensure t
-  :pin melpa-stable)
+(use-package clojure-mode-extra-font-locking)
 
 
 ;; Highlight matching parentheses
@@ -294,6 +292,10 @@
   (load user-custom-file)
   (put 'downcase-region 'disabled nil))
 (put 'narrow-to-region 'disabled nil)
+
+(require 'server)
+(unless (server-running-p)
+  (server-start))
 
 ;; Reset GC to reasonable defaults
 (add-hook 'emacs-startup-hook

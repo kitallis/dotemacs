@@ -86,9 +86,10 @@
   (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
 
   ;; (global-set-key (kbd "s-b") 'ivy-switch-buffer)
-  (use-package flx
-    :init
-    (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))))
+  ;; (use-package flx
+  ;;   :init
+  ;;   (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy))))
+  )
 
 (use-package counsel
   :init (use-package rg
@@ -96,7 +97,7 @@
           (setq rg-command-line-flags '("-w"))
           (setq rg-ignore-case 'smart))
   :config
-  (global-set-key (kbd "s-g") 'counsel-rg)
+  ;; (global-set-key (kbd "s-g") 'counsel-rg)
   (global-set-key (kbd "C-x C-r") 'counsel-recentf)
   (setq counsel-rg-base-command "rg -i -w --no-heading --line-number %s .")
   (setq recentf-max-saved-items 50)
@@ -112,7 +113,7 @@
         org-default-notes-file (concat org-directory "/notes.txt")
         org-export-coding-system 'utf-8
         org-ellipsis " ▼ "
-        org-startup-indented t
+        org-startup-indented nil
         org-src-fontify-natively t
         org-src-preserve-indentation t)
   (setq org-capture-templates
@@ -123,18 +124,7 @@
           ))
   (add-hook 'org-mode-hook
             (lambda () (when (fboundp 'org-mac-grab-link)
-                         (load-file "~/.emacs.d/org-mac-link.el"))))
-  (use-package org-journal
-    :ensure t
-    :bind (("C-c y" . org-journal-previous-entry))
-    :config
-    (global-set-key (kbd "C-c t") (lambda () (interactive) (org-journal-new-entry t)))
-    :custom
-    (org-journal-find-file #'find-file)
-    (org-journal-dir "~/Box Sync/Kiran/journal")
-    (org-journal-file-format "%Y-%m-%d.org")
-    ;; (org-journal-date-format "#+TITLE: Journal Entry: %e %b %Y (%A)")
-    (org-journal-date-format "%A, %d %B %Y")))
+                         (load-file "~/.emacs.d/org-mac-link.el")))))
 
 (use-package multiple-cursors
   :config
@@ -145,6 +135,9 @@
 
 (use-package doom-modeline
   :hook (after-init . doom-modeline-init)
+  :init
+  (set-face-attribute 'mode-line nil :height 130)
+  (set-face-attribute 'mode-line-inactive nil :height 130)
   :config
   (setq doom-modeline-buffer-file-name-style 'file-name
         doom-modeline-icon nil
@@ -153,9 +146,8 @@
         doom-modeline-github nil
         doom-modeline-version nil
         doom-modeline-height 10
-        doom-modeline-bar-width 3)
-  (set-face-attribute 'mode-line nil :height 130)
-  (set-face-attribute 'mode-line-inactive nil :height 130))
+        doom-modeline-bar-width 3
+        doom-modeline-buffer-encoding nil))
 
 (use-package undo-tree
   :bind ("s-Z" . 'undo-tree-redo)
@@ -180,8 +172,8 @@
   :config
   (global-hl-todo-mode t))
 
-(use-package yaml-mode :ensure t)
-(use-package json-mode :ensure t)
+(use-package yaml-mode)
+(use-package json-mode)
 
 (use-package counsel-projectile
   :config
@@ -212,109 +204,57 @@
   (use-package flycheck-rust
     :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 
-(use-package go-mode)
-
-(use-package ivy-posframe
-  :disabled t
-  :config
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center)))
-  (ivy-posframe-mode 1))
-
 (use-package fast-scroll
-  :pin melpa-stable
   :config
   (fast-scroll-config)
   (fast-scroll-mode 1))
 
-;; =============== EFUNS ==================
+(use-package flycheck-clj-kondo
+  :config
+  (add-hook 'clojure-mode-hook #'flycheck-mode))
 
-(defun kg/split-below-and-move ()
-  (interactive)
-  (split-window-below)
-  (other-window 1))
+;; (use-package ivy-posframe
+;;   :after ivy
+;;   :diminish
+;;   :config
+;;   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center))
+;;         ;; ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center))
+;;         ivy-posframe-height-alist '((t . 20))
+;;         ivy-posframe-parameters '((internal-border-width . 10)))
+;;   (setq ivy-posframe-width 70)
+;;   (ivy-posframe-mode -1))
 
-(defun kg/split-right-and-move ()
-  (interactive)
-  (split-window-right)
-  (other-window 1))
+;; (use-package highlight-indent-guides
+;;   :diminish
+;;   :config
+;;   (add-hook 'prog-mode-hook #'highlight-indent-guides-mode)
+;;   (setq highlight-indent-guides-method 'character)
+;;   (setq highlight-indent-guides-character 9615) ; left-align vertical bar
+;;   (setq highlight-indent-guides-auto-character-face-perc 20))
 
-(defun kg/beginning-of-line-dwim ()
-  "Toggle between moving point to the first non-whitespace character, and the start of the line."
-  (interactive)
-  (let ((start-position (point)))
-    ;; Move to the first non-whitespace character.
-    (back-to-indentation)
+;; (use-package find-file-in-project
+;;   :config
+;;   (setq ffip-use-rust-fd t))
 
-    ;; If we haven't moved position, go to start of the line.
-    (when (= (point) start-position)
-      (move-beginning-of-line nil))))
+(use-package k8s-mode
+  :hook (k8s-mode . yas-minor-mode))
 
-(defun kg/duplicate-start-of-line-or-region ()
-  "Duplicate start of line or region."
-  (interactive)
-  (if mark-active
-      (kg/duplicate-region)
-    (kg/duplicate-start-of-line)))
+(use-package protobuf-mode)
 
-(defun kg/duplicate-start-of-line ()
-  "Duplicate start of line."
-  (let ((text (buffer-substring (point)
-                                (beginning-of-thing 'line))))
-    (forward-line)
-    (push-mark)
-    (insert text)
-    (open-line 1)))
+;; ==============
+;;    EFUNS
+;; ==============
 
-(defun kg/duplicate-region ()
-  "Duplicate start of region."
-  (let* ((end (region-end))
-         (text (buffer-substring (region-beginning)
-                                 end)))
-    (goto-char end)
-    (insert text)
-    (push-mark end)
-    (setq deactivate-mark nil)
-    (exchange-point-and-mark)))
+(defun load-local (file)
+  (load (f-expand file user-emacs-directory)))
 
-(defun kg/set-fringe-background ()
-  "Set the fringe background to the same color as the regular background."
-  (interactive)
-  (custom-set-faces
-   `(fringe ((t (:background ,(face-background 'default)))))))
+(load-local "init-efuns")
 
-(add-hook 'after-init-hook #'kg/set-fringe-background)
+;; ==================
+;; GLOBAL KEYBINDINGS
+;; ==================
 
-(defun kg/reset-ui ()
-  "Reset some UI components after changing a theme."
-  (interactive)
-  ;; (fringe-mode 10)
-  (fringe-mode '(0 . 0))
-  (kg/set-fringe-background)
-  (setq linum-format "%5d "))
-
-(defun kg/delete-this-buffer-and-file ()
-  "Remove file connected to current buffer and kill buffer."
-  (interactive)
-  (let ((filename (buffer-file-name))
-        (buffer (current-buffer))
-        (name (buffer-name)))
-    (if (not (and filename (file-exists-p filename)))
-        (error "Buffer '%s' is not visiting a file!" name)
-      (when (yes-or-no-p "Are you sure you want to remove this file? ")
-        (delete-file filename)
-        (kill-buffer buffer)
-        (message "File '%s' successfully removed" filename)))))
-
-(defun kg/search-marked-region-if-available (start end)
-  "Pre-fill counsel-rg with marked region if available."
-    (interactive "r")
-    (if (use-region-p)
-        (let ((regionp (buffer-substring start end)))
-          (counsel-rg regionp))
-      (counsel-rg)))
-
-;; ================ GLOBAL KEYBINDINGS ++++++++++++++++++++
-
+(global-set-key (kbd "s-g") 'kg/search-marked-region-if-available)
 (global-set-key (kbd "s-l") 'goto-line)
 (global-set-key (kbd "s-t") 'projectile-find-file)
 (global-set-key (kbd "M-j") (lambda () (interactive) (join-line -1)))
@@ -326,8 +266,8 @@
 (global-set-key (kbd "C-a") 'kg/beginning-of-line-dwim)
 (global-set-key [(meta shift down)] 'kg/duplicate-start-of-line-or-region)
 (global-set-key (kbd "C-c C-l") 'org-capture)
+(global-set-key (kbd "<f6>") 'kg/show-user-config)
 
 
 ;; === ============ ADD THEME FOLDER =========================
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-;; (load-theme 'molokai)
