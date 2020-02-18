@@ -13,3 +13,8 @@ ido.last
 .projectile-cache
 *.eld
 eshell
+straight/build-cache.el
+straight/build
+straight/modified
+straight/repos
+.rgignore
