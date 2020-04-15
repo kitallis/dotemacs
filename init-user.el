@@ -42,6 +42,20 @@
 (setq org-todo-keywords
       '((sequence "TODO" "DOING" "|" "DONE")))
 
+;;Treat hyphens as a word character when transposing words
+(defvar clojure-mode-with-hyphens-as-word-sep-syntax-table
+  (let ((st (make-syntax-table clojure-mode-syntax-table)))
+    (modify-syntax-entry ?- "w" st)
+    st))
+
+(defun transpose-words-with-hyphens (arg)
+  "Treat hyphens as a word character when transposing words"
+  (interactive "*p")
+  (with-syntax-table clojure-mode-with-hyphens-as-word-sep-syntax-table
+    (transpose-words arg)))
+
+(define-key clojure-mode-map (kbd "M-t") 'transpose-words-with-hyphens)
+
 ;; ======
 ;; THEMES
 ;; ======
