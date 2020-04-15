@@ -282,6 +282,8 @@
 (global-set-key [(meta shift down)] 'kg/duplicate-start-of-line-or-region)
 (global-set-key (kbd "C-c C-l") 'org-capture)
 (global-set-key (kbd "<f6>") 'kg/show-user-config)
+(global-set-key (kbd "s-w") 'kill-this-buffer)
+(global-set-key (kbd "<s-S-return>") 'kg/toggle-maximize-buffer)
 
 
 ;; === ============ ADD THEME FOLDER =========================
