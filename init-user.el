@@ -117,11 +117,26 @@
   ;;   (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy))))
   )
 
+(use-package wgrep)
+
+(use-package rg
+  :config
+  (setq rg-command-line-flags '("-w"))
+  (setq rg-ignore-case 'smart)
+
+  (rg-define-search kg/grep-vc-or-dir
+    :query ask
+    :format regexp
+    :files "everything"
+    :dir (let ((vc (vc-root-dir)))
+           (if vc
+               vc                         ; search root project dir
+             default-directory))          ; or from the current dir
+    :confirm prefix
+    :flags ("--hidden -g !.git")))
+
 (use-package counsel
-  :init (use-package rg
-          :config
-          (setq rg-command-line-flags '("-w"))
-          (setq rg-ignore-case 'smart))
+  :after rg
   :config
   ;; (global-set-key (kbd "s-g") 'counsel-rg)
   (global-set-key (kbd "C-x C-r") 'counsel-recentf)
@@ -242,6 +257,15 @@
   :config
   (add-hook 'clojure-mode-hook #'flycheck-mode))
 
+(use-package web-mode
+  :mode (("\\.html?\\'" . web-mode)
+         ("\\.css\\'"   . web-mode)
+         ("\\.json\\'"  . web-mode))
+  :config
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-css-indent-offset 2))
+
 ;; (use-package ivy-posframe
 ;;   :after ivy
 ;;   :diminish
@@ -269,6 +293,16 @@
   :hook (k8s-mode . yas-minor-mode))
 
 (use-package protobuf-mode)
+
+(use-package dockerfile-mode
+  :config
+  (require 'dockerfile-mode)
+  (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
+
+(use-package golden-ratio
+  :diminish golden-ratio-mode
+  :init
+  (golden-ratio-mode 1))
 
 ;; ==============
 ;;    EFUNS
