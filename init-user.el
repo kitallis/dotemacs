@@ -7,8 +7,9 @@
                     :weight 'normal
                     :width 'normal)
 
-(setq-default line-spacing 0.2
-              help-window-select t)
+(setq-default line-spacing 0.1
+              help-window-select t
+              truncate-lines t)
 
 ;; workaround for alt not working as meta key
 (setq mac-option-key-is-meta nil
@@ -28,10 +29,12 @@
       buffer-file-coding-system 'utf-8
       org-ellipsis " ▶")
 
-(set-default 'cursor-type t)
+;; (set-default 'cursor-type '(bar . 2))
+(set-default 'cursor-type 'box)
+(blink-cursor-mode 0)
 
 (global-hl-line-mode nil)
-(set-face-attribute hl-line-face nil :underline t)
+(set-face-attribute hl-line-face nil :underline nil)
 
 ;; Rewrite selected text
 (delete-selection-mode 1)
@@ -43,21 +46,30 @@
 ;; THEMES
 ;; ======
 
-(use-package monokai-pro-theme)
-(use-package nimbus-theme :disabled t)
+(use-package monokai-pro-theme :disabled t)
+(use-package moe-theme
+  :disabled t
+  :config
+  (setq moe-theme-highlight-buffer-id t
+        show-paren-style 'parenthesis)
+  (moe-theme-set-color 'blue)
+  (moe-dark))
 (use-package srcery-theme :disabled t)
 (use-package nord-theme :disabled t)
 (use-package darkokai-theme
   :disabled t
   :config
-  (setq darkokai-mode-line-padding 1)
-  (load-theme 'darkokai))
+  (setq darkokai-mode-line-padding 1))
 (use-package doom-themes
   :disabled t
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  (load-theme 'doom-challenger-deep))
+  (load-theme 'doom-gruvbox))
+(use-package abyss-theme :disabled t)
+(use-package gruvbox-theme)
+
+;; (load-theme 'monokai)
 
 ;; ==========================
 ;; OTHER THIRD PARTY PACKAGES
@@ -139,15 +151,18 @@
   (set-face-attribute 'mode-line nil :height 130)
   (set-face-attribute 'mode-line-inactive nil :height 130)
   :config
-  (setq doom-modeline-buffer-file-name-style 'file-name
-        doom-modeline-icon nil
+  (setq doom-modeline-buffer-file-name-style 'relative-from-project
         doom-modeline-major-mode-icon nil
         doom-modeline-minor-modes nil
         doom-modeline-github nil
         doom-modeline-version nil
         doom-modeline-height 10
-        doom-modeline-bar-width 3
-        doom-modeline-buffer-encoding nil))
+        doom-modeline-bar-width 1
+        doom-modeline-buffer-encoding nil
+        doom-modeline-vcs-max-length 50
+        doom-modeline-gnus nil
+        doom-modeline-irc nil
+        doom-modeline-persp-name nil))
 
 (use-package undo-tree
   :bind ("s-Z" . 'undo-tree-redo)
