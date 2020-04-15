@@ -217,7 +217,8 @@
         nrepl-hide-special-buffers t
         cider-repl-use-pretty-printing t
         cider-repl-result-prefix ";; => "
-        cider-repl-display-help-banner nil)
+        cider-repl-display-help-banner nil
+        cider-font-lock-dynamically '(macro core function var))
 
   :config
   (add-hook 'cider-mode-hook #'eldoc-mode)
@@ -229,13 +230,14 @@
   (add-hook 'cider-mode-hook #'company-mode)
   (add-hook 'cider-mode-hook
             (lambda ()
-              (local-set-key (kbd "<C-return>") 'cider-eval-defun-at-point)
+              (local-set-key (kbd "<C-return>") 'cider-eval-last-sexp)
               (local-set-key (kbd "C-c C-n") 'cider-eval-buffer))))
 
 
 ;; Adds some niceties/refactoring support
 (use-package clj-refactor
   :config
+  (setq cljr-warn-on-eval nil)
   (add-hook 'clojure-mode-hook
             (lambda ()
               (clj-refactor-mode 1))))
