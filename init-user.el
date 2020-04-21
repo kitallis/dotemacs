@@ -2,12 +2,12 @@
 (set-default-coding-systems 'utf-8)
 
 (set-face-attribute 'default nil
-                    :family "Office Code Pro"
+                    :family "Fira Code"
                     :height 130
                     :weight 'normal
                     :width 'normal)
 
-(setq-default line-spacing 0.1
+(setq-default line-spacing 0.2
               help-window-select t
               truncate-lines t)
 
@@ -78,12 +78,13 @@
   :disabled t
   :config
   (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t)
-  (load-theme 'doom-gruvbox))
+        doom-themes-enable-italic t))
 (use-package abyss-theme :disabled t)
-(use-package gruvbox-theme)
-
-;; (load-theme 'monokai)
+(use-package gruvbox-theme :disabled t)
+(use-package github-theme :disabled t)
+(use-package dracula-theme
+  :config
+  (load-theme 'dracula))
 
 ;; ==========================
 ;; OTHER THIRD PARTY PACKAGES
@@ -174,6 +175,8 @@
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this))
 
+(use-package all-the-icons)
+
 (use-package doom-modeline
   :hook (after-init . doom-modeline-init)
   :init
@@ -181,7 +184,9 @@
   (set-face-attribute 'mode-line-inactive nil :height 130)
   :config
   (setq doom-modeline-buffer-file-name-style 'relative-from-project
-        doom-modeline-major-mode-icon nil
+        doom-modeline-icon (display-graphic-p)
+        doom-modeline-major-mode-color-icon t
+        doom-modeline-major-mode-icon t
         doom-modeline-minor-modes nil
         doom-modeline-github nil
         doom-modeline-version nil
@@ -191,7 +196,8 @@
         doom-modeline-vcs-max-length 50
         doom-modeline-gnus nil
         doom-modeline-irc nil
-        doom-modeline-persp-name nil))
+        doom-modeline-persp-name nil
+        doom-modeline-window-width-limit fill-column))
 
 (use-package undo-tree
   :bind ("s-Z" . 'undo-tree-redo)
