@@ -310,6 +310,13 @@
   :init
   (golden-ratio-mode 1))
 
+(use-package dired-sidebar
+  :commands (dired-sidebar-toggle-sidebar)
+  :config
+  (setq dired-sidebar-theme 'icons)
+  (setq dired-sidebar-use-custom-font t)
+  (setq dired-sidebar-face '(:family "Helvetica" :height 110)))
+
 ;; ==============
 ;;    EFUNS
 ;; ==============

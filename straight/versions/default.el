@@ -10,6 +10,8 @@
  ("company-mode" . "65fd3685e627b9b45535c6251e633795c4cbd43d")
  ("counsel-projectile" . "b556ed8995f375e57496f3482aef4b0def565de8")
  ("dash.el" . "721436b04da4e2795387cb48a98ac6de37ece0fd")
+ ("dired-hacks" . "f49a8bbf95f70671a74a24f7f4de453b2686be46")
+ ("dired-sidebar" . "6e569c851418890c21fd37d03a62f85343aa0900")
  ("dockerfile-mode" . "d31f7685ebc5832d957e25070a930aa42984327d")
  ("doom-modeline" . "0df558598451c36714c0793283fecc064adaf786")
  ("edn.el" . "be9e32d1b49e35247b263b0243df7cfdc8d413ab")
