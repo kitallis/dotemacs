@@ -56,6 +56,11 @@
 
 (define-key clojure-mode-map (kbd "M-t") 'transpose-words-with-hyphens)
 
+;; Replace scratch buffer with contents of file if it exists
+(let ((filename "~/.emacs.d/plan-the-day.org"))
+  (when (file-exists-p filename)
+    (setq initial-buffer-choice filename)))
+
 ;; ======
 ;; THEMES
 ;; ======
