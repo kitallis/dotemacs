@@ -307,7 +307,12 @@
 (use-package k8s-mode
   :hook (k8s-mode . yas-minor-mode))
 
-(use-package protobuf-mode)
+(use-package protobuf-mode
+  :hook (protobuf-mode . flycheck-mode)
+  :config
+  ;; Consider integrating buf using the snippet below
+  ;; https://github.com/flycheck/flycheck/issues/1453#issuecomment-506598272
+  )
 
 (use-package dockerfile-mode
   :config
