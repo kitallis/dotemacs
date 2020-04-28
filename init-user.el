@@ -80,16 +80,21 @@
   :config
   (setq darkokai-mode-line-padding 1))
 (use-package doom-themes
-  :disabled t
   :config
   (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t))
+        doom-themes-enable-italic t)
+  (load-theme 'doom-challenger-deep))
 (use-package abyss-theme :disabled t)
 (use-package gruvbox-theme :disabled t)
 (use-package github-theme :disabled t)
 (use-package dracula-theme
+  :disabled t
   :config
   (load-theme 'dracula))
+(use-package bubbleberry-theme
+  :disabled t
+  :config
+  (load-theme 'bubbleberry))
 
 ;; ==========================
 ;; OTHER THIRD PARTY PACKAGES
@@ -117,7 +122,6 @@
   ;; Use [Enter] to navigate into the directory, not dired-open it.
   (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
 
-  ;; (global-set-key (kbd "s-b") 'ivy-switch-buffer)
   ;; (use-package flx
   ;;   :init
   ;;   (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy))))
