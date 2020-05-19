@@ -198,7 +198,8 @@
   :init (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 (define-clojure-indent
-  (defrecord 1))
+  (defrecord 1)
+  (as-> 2))
 
 ;; Cider integrates a Clojure buffer with a REPL
 (use-package cider
@@ -231,7 +232,8 @@
   (add-hook 'cider-mode-hook
             (lambda ()
               (local-set-key (kbd "<C-return>") 'cider-eval-last-sexp)
-              (local-set-key (kbd "C-c C-n") 'cider-eval-buffer))))
+              (local-set-key (kbd "C-c C-n") 'cider-eval-buffer)
+              (local-set-key (kbd "C-x C-i") 'cider-inspect-last-sexp))))
 
 
 ;; Adds some niceties/refactoring support
