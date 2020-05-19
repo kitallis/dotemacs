@@ -2,12 +2,12 @@
 (set-default-coding-systems 'utf-8)
 
 (set-face-attribute 'default nil
-                    :family "Fira Code"
-                    :height 130
+                    :family "Inconsolata"
+                    :height 150
                     :weight 'normal
                     :width 'normal)
 
-(setq-default line-spacing 0.2
+(setq-default line-spacing 0.3
               help-window-select t
               truncate-lines t)
 
@@ -95,6 +95,15 @@
   :disabled t
   :config
   (load-theme 'bubbleberry))
+(use-package solarized-theme
+  :init
+  (setq solarized-distinct-fringe-background nil)
+  (setq solarized-use-less-bold t)
+  (setq solarized-use-variable-pitch nil)
+  (setq x-underline-at-descent-line t)
+
+  :config
+  (load-theme 'solarized-dark))
 
 ;; ==========================
 ;; OTHER THIRD PARTY PACKAGES
@@ -177,6 +186,11 @@
             (lambda () (when (fboundp 'org-mac-grab-link)
                          (load-file "~/.emacs.d/org-mac-link.el")))))
 
+(use-package org-bullets
+  :after org
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
 (use-package multiple-cursors
   :config
   (setq-default mc/edit-lines-empty-lines 'ignore
@@ -184,13 +198,15 @@
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this))
 
-(use-package all-the-icons)
+(use-package all-the-icons
+  :disabled t)
 
 (use-package doom-modeline
   :hook (after-init . doom-modeline-init)
   :init
   (set-face-attribute 'mode-line nil :height 130)
   (set-face-attribute 'mode-line-inactive nil :height 130)
+  (set-face-attribute 'mode-line nil :family "Inconsolata Nerd Font" :height 130)
   :config
   (setq doom-modeline-buffer-file-name-style 'relative-from-project
         doom-modeline-icon (display-graphic-p)
