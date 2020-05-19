@@ -260,7 +260,11 @@
   (add-hook 'rust-mode-hook #'smartparens-mode)
   (add-hook 'rust-mode-hook
             (lambda ()
-              (local-set-key (kbd "C-c <tab>") #'rust-format-buffer)))
+              (local-set-key (kbd "C-c SPC") #'rust-format-buffer)
+              (local-set-key (kbd "C-c c") #'rust-compile)
+              (local-set-key (kbd "C-c C-t") #'rust-test)
+              (local-set-key (kbd "C-c C-r") #'rust-run)
+              (setq company-minimum-prefix-length 1)))
 
   (use-package racer
     :init
@@ -271,7 +275,9 @@
     (add-hook 'racer-mode-hook #'eldoc-mode)
     (add-hook 'racer-mode-hook #'company-mode)
     (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-    (setq company-tooltip-align-annotations t))
+    (define-key rust-mode-map (kbd "C-c C-d") #'racer-describe)
+    (setq company-tooltip-align-annotations t
+          racer-eldoc-timeout 0.5))
 
   (use-package cargo
     :config (add-hook 'rust-mode-hook 'cargo-minor-mode))
