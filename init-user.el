@@ -61,6 +61,12 @@
   (when (file-exists-p filename)
     (setq initial-buffer-choice filename)))
 
+;; (use-package anakondo
+;;   :commands anakondo-minor-mode
+;;   :config
+;;   (add-hook 'clojure-mode-hook #'anakondo-minor-mode)
+;;   (add-hook 'clojurescript-mode-hook #'anakondo-minor-mode))
+
 ;; ======
 ;; THEMES
 ;; ======
