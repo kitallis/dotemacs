@@ -244,6 +244,7 @@
             (lambda ()
               (clj-refactor-mode 1))))
 
+
 (use-package flycheck-clj-kondo
   :config
   (remove-hook 'clojure-mode-hook
@@ -283,6 +284,7 @@
   :config
   (setq magit-set-upstream-on-push 'askifnotset))
 
+
 ;; User customizations
 ;; Add your customizations to `init-user.el`
 (when (file-exists-p "~/.emacs.d/init-user.el")
@@ -291,9 +293,11 @@
   (put 'downcase-region 'disabled nil))
 (put 'narrow-to-region 'disabled nil)
 
+
 (require 'server)
 (unless (server-running-p)
   (server-start))
+
 
 ;; Reset GC to reasonable defaults
 (add-hook 'emacs-startup-hook

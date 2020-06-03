@@ -2,7 +2,7 @@
 (set-default-coding-systems 'utf-8)
 
 (set-face-attribute 'default nil
-                    :family "Inconsolata"
+                    :family "Fira Code"
                     :height 150
                     :weight 'normal
                     :width 'normal)
@@ -56,22 +56,11 @@
 
 (define-key clojure-mode-map (kbd "M-t") 'transpose-words-with-hyphens)
 
-;; Replace scratch buffer with contents of file if it exists
-(let ((filename "~/.emacs.d/plan-the-day.org"))
-  (when (file-exists-p filename)
-    (setq initial-buffer-choice filename)))
-
-;; (use-package anakondo
-;;   :commands anakondo-minor-mode
-;;   :config
-;;   (add-hook 'clojure-mode-hook #'anakondo-minor-mode)
-;;   (add-hook 'clojurescript-mode-hook #'anakondo-minor-mode))
-
 ;; ======
 ;; THEMES
 ;; ======
 
-(use-package monokai-pro-theme :disabled t)
+(use-package monokai-pro-theme)
 (use-package moe-theme
   :disabled t
   :config
@@ -103,6 +92,7 @@
   (load-theme 'bubbleberry))
 (use-package solarized-theme
   :init
+  :disabled t
   (setq solarized-distinct-fringe-background nil)
   (setq solarized-use-less-bold t)
   (setq solarized-use-variable-pitch nil)
@@ -135,12 +125,7 @@
   (setq ivy-count-format "(%d/%d) ")
 
   ;; Use [Enter] to navigate into the directory, not dired-open it.
-  (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
-
-  ;; (use-package flx
-  ;;   :init
-  ;;   (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy))))
-  )
+  (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done))
 
 (use-package wgrep)
 
@@ -175,7 +160,7 @@
 
 (use-package org
   :config
-  (setq org-directory "~/Box Sync/org-notes"
+  (setq org-directory "~/org-notes"
         org-default-notes-file (concat org-directory "/notes.txt")
         org-export-coding-system 'utf-8
         org-ellipsis " ▼ "
@@ -183,11 +168,9 @@
         org-src-fontify-natively t
         org-src-preserve-indentation t)
   (setq org-capture-templates
-        '(
-          ("l" "Add a link to the linklog" entry
+        '(("l" "Add a link to the linklog" entry
            (file+olp+datetree (lambda () (concat org-directory "/linklog.org")))
-           "**** %?")
-          ))
+           "**** %?")))
   (add-hook 'org-mode-hook
             (lambda () (when (fboundp 'org-mac-grab-link)
                          (load-file "~/.emacs.d/org-mac-link.el")))))
@@ -210,9 +193,9 @@
 (use-package doom-modeline
   :hook (after-init . doom-modeline-init)
   :init
-  (set-face-attribute 'mode-line nil :height 130)
-  (set-face-attribute 'mode-line-inactive nil :height 130)
-  (set-face-attribute 'mode-line nil :family "Inconsolata Nerd Font" :height 130)
+  (set-face-attribute 'mode-line nil :height 140)
+  (set-face-attribute 'mode-line-inactive nil :height 140)
+  (set-face-attribute 'mode-line nil :family "Inconsolata Nerd Font" :height 140)
   :config
   (setq doom-modeline-buffer-file-name-style 'relative-from-project
         doom-modeline-icon (display-graphic-p)
@@ -259,6 +242,8 @@
 (use-package counsel-projectile
   :config
   (counsel-projectile-mode))
+
+(use-package elixir-mode)
 
 (use-package rust-mode
   :config
@@ -309,38 +294,8 @@
   (setq web-mode-code-indent-offset 2)
   (setq web-mode-css-indent-offset 2))
 
-;; (use-package ivy-posframe
-;;   :after ivy
-;;   :diminish
-;;   :config
-;;   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center))
-;;         ;; ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center))
-;;         ivy-posframe-height-alist '((t . 20))
-;;         ivy-posframe-parameters '((internal-border-width . 10)))
-;;   (setq ivy-posframe-width 70)
-;;   (ivy-posframe-mode -1))
-
-;; (use-package highlight-indent-guides
-;;   :diminish
-;;   :config
-;;   (add-hook 'prog-mode-hook #'highlight-indent-guides-mode)
-;;   (setq highlight-indent-guides-method 'character)
-;;   (setq highlight-indent-guides-character 9615) ; left-align vertical bar
-;;   (setq highlight-indent-guides-auto-character-face-perc 20))
-
-;; (use-package find-file-in-project
-;;   :config
-;;   (setq ffip-use-rust-fd t))
-
 (use-package k8s-mode
   :hook (k8s-mode . yas-minor-mode))
-
-(use-package protobuf-mode
-  :hook (protobuf-mode . flycheck-mode)
-  :config
-  ;; Consider integrating buf using the snippet below
-  ;; https://github.com/flycheck/flycheck/issues/1453#issuecomment-506598272
-  )
 
 (use-package dockerfile-mode
   :config

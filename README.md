@@ -1,15 +1,24 @@
-## dotemacs
+# dotemacs
 
-This is the new home for my Emacs configuration, after a detox from my [old, bigger and more customized setup](https://github.com/kirang89/.emacs.d).
+Primarily optimized for Clojure. Tons of other editing goodness.
 
-## Setup
+Uses the [straight](https://github.com/raxod502/straight.el) package manager. Install [Fira Code](https://github.com/tonsky/FiraCode) for text and [Inconsolata Nerd Font](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Inconsolata/complete/Inconsolata%20Nerd%20Font%20Complete.otf) for modeline.
 
-I use [straight](https://github.com/raxod502/straight.el) as my package manager, so please read a bit about it, before setting up this configuration.
+## Installing
 
-To proceed, run the following command:
+#### OS X
 
+Install vanilla Emacs as a Mac app from http://emacsformacosx.com. Other options, like Aquamacs, are supposed to make Emacs more “Mac-like,” but they’re problematic in the long run because they’re set up so differently from standard Emacs that it’s difficult to use the Emacs manual or follow along with tutorials.
+
+#### Ubuntu
+Follow the instructions at https://launchpad.net/~cassou/+archive/emacs.
+
+#### Windows
+You can find a binary at http://ftp.gnu.org/gnu/emacs/windows. After you download and unzip the latest version, you can run the Emacs executable under bin\runemacs.exe.
+
+## Setup Configuration
 ```
-git clone https://gitlab.com/nilenso/dotemacs ~/.emacs.d
+git clone https://github.com/kitallis/dotemacs.git ~/.emacs.d
 ```
 
-then run Emacs. On the first run, Emacs will install and compile any packages handled by the package manager.
+On the first run, Emacs will install and compile any packages handled by the package manager.
