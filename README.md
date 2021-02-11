@@ -40,13 +40,6 @@ When in doubt, bounce all your straight packages:
 rm ~/.emacs.d/straight
 ```
 
-## Setup
-```
-git clone https://github.com/kitallis/dotemacs.git ~/.emacs.d
-```
-
-On the first run, Emacs will install and compile any packages handled by the package manager.
-
 ## Maintenance
 
 * Straight / package manager configuration goes in `init.el`
