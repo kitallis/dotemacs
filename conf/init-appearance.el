@@ -79,12 +79,35 @@
 (setq linum-format "%5d ")
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
-;; Edit with multiple cursors at once
-(use-package multiple-cursors
+(use-package doom-themes
   :config
-  (setq-default mc/edit-lines-empty-lines 'ignore
-                mc/insert-numbers-default 1)
-  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this))
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
+  (load-theme 'doom-challenger-deep))
+
+(use-package doom-modeline
+  :hook (after-init . doom-modeline-init)
+  :init
+  (set-face-attribute 'mode-line nil :height 140)
+  (set-face-attribute 'mode-line-inactive nil :height 140)
+  (set-face-attribute 'mode-line nil :family "Inconsolata Nerd Font" :height 140)
+  :config
+  (setq doom-modeline-buffer-file-name-style 'relative-from-project
+        doom-modeline-icon (display-graphic-p)
+        doom-modeline-major-mode-color-icon t
+        doom-modeline-major-mode-icon t
+        doom-modeline-minor-modes nil
+        doom-modeline-github nil
+        doom-modeline-version nil
+        doom-modeline-height 10
+        doom-modeline-bar-width 1
+        doom-modeline-buffer-encoding nil
+        doom-modeline-vcs-max-length 50
+        doom-modeline-gnus nil
+        doom-modeline-irc nil
+        doom-modeline-persp-name nil
+        doom-modeline-window-width-limit fill-column))
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
 (provide 'init-appearance)

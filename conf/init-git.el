@@ -3,4 +3,4 @@
   :config
   (setq magit-set-upstream-on-push 'askifnotset))
 
-(provide 'init-magit)
+(provide 'init-git)
