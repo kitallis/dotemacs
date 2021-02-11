@@ -19,7 +19,7 @@ Install vanilla Emacs as a Mac app from http://emacsformacosx.com. Other options
 Follow the instructions at https://launchpad.net/~cassou/+archive/emacs.
 
 #### Windows
-You can find a binary at http://ftp.gnu.org/gnu/emacs/windows. After you download and unzip the latest version, you can run the Emacs executable under bin\runemacs.exe.
+You can find a binary at http://ftp.gnu.org/gnu/emacs/windows. After you download and unzip the latest version, you can run the Emacs executable under `bin\runemacs.exe`.
 
 ## Setup
 ```
