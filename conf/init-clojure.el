@@ -40,6 +40,7 @@
   :custom
   (lsp-auto-guess-root t)
   (lsp-eldoc-enable-hover nil)
+  (lsp-enable-indentation nil)
   (lsp-enable-file-watchers nil)
   (lsp-enable-folding nil)
   (lsp-headerline-breadcrumb-enable nil)
