@@ -20,3 +20,5 @@ straight/repos
 .rgignore
 plan-the-day.org
 smex-items
+.cache
+.lsp-session*
