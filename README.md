@@ -40,6 +40,13 @@ When in doubt, bounce all your straight packages:
 rm ~/.emacs.d/straight
 ```
 
+## Setup
+```
+git clone https://github.com/kitallis/dotemacs.git ~/.emacs.d
+```
+
+On the first run, Emacs will install and compile any packages handled by the package manager.
+
 ## Maintenance
 
 * Straight / package manager configuration goes in `init.el`
@@ -59,4 +66,4 @@ Follow the instructions at https://launchpad.net/~cassou/+archive/emacs.
 
 #### Windows
 
-You can find a binary at http://ftp.gnu.org/gnu/emacs/windows. After you download and unzip the latest version, you can run the Emacs executable under bin\runemacs.exe.
+You can find a binary at http://ftp.gnu.org/gnu/emacs/windows. After you download and unzip the latest version, you can run the Emacs executable under `bin\runemacs.exe`.
