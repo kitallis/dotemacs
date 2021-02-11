@@ -31,7 +31,7 @@
 (load custom-file 'noerror)
 
 ;; Load custom configurations
-;; These are in required in a "valid" order
+;; These required in a "valid" order
 (require 'init-efuns)
 (require 'init-sane-defaults)
 (require 'init-appearance)
@@ -45,6 +45,15 @@
 (require 'init-org)
 (require 'init-projectile)
 (require 'init-keybinds)
+
+;; User customizations
+;; Add your customizations / overrides to *user-customizations-path*
+(defconst *user-customizations-path* "~/.emacs.d/init-user.el")
+(when (file-exists-p *user-customizations-path*)
+  (setq user-custom-file *user-customizations-path*)
+  (load user-custom-file)
+  (put 'downcase-region 'disabled nil))
+(put 'narrow-to-region 'disabled nil)
 
 ;; Reset GC to reasonable defaults
 (add-hook 'emacs-startup-hook

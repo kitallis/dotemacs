@@ -1,7 +1,6 @@
 cider-history
 custom.el
 elpa/
-network-security.data
 *.el~
 recentf
 bookmarks
@@ -18,7 +17,6 @@ straight/build
 straight/modified
 straight/repos
 .rgignore
-plan-the-day.org
 smex-items
 .cache
 .lsp-session*
