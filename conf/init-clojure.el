@@ -9,11 +9,14 @@
             (lambda ()
               (clj-refactor-mode 1))))
 
-(use-package flycheck-clj-kondo
-  :config
-  (remove-hook 'clojure-mode-hook
-               (lambda ()
-                 (require 'flycheck-clj-kondo))))
+;; TODO: remove this. @borkdude and @ericdallo tell me we should *not*
+;;       manually use flycheck-clj-kondo with clojure-lsp, since clojure-lsp
+;;       is already using flycheck and kondo under the hood. -sd
+;; (use-package flycheck-clj-kondo
+;;   :config
+;;   (remove-hook 'clojure-mode-hook
+;;                (lambda ()
+;;                  (require 'flycheck-clj-kondo))))
 
 ;; Aggressively indents your clojure code
 (use-package aggressive-indent
