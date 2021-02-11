@@ -4,6 +4,15 @@ Primarily optimized for Clojure. Tons of other editing goodness.
 
 Uses the [straight](https://github.com/raxod502/straight.el) package manager. Install [Fira Code](https://github.com/tonsky/FiraCode) for text and [Inconsolata Nerd Font](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Inconsolata/complete/Inconsolata%20Nerd%20Font%20Complete.otf) for modeline.
 
+## Maintainence
+
+* Straight, general appearance and package configuration goes in `init.el`
+* Keybindings, themes go in `init-user.el`
+* All code/programming related package configuration goes in `init-code.el`
+* Helper functions go in `init-efuns.el`
+* Run `M-x straight-freeze-dependencies` to keep the lockfile updated for all `straight` recipes
+
+
 ## Installing
 
 #### OS X
