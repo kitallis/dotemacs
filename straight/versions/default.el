@@ -8,7 +8,6 @@
  ("clojure-mode" . "53ef8ac076ae7811627fbdd408e519ab7fca9a0b")
  ("company-mode" . "5c25e114c3ac1bee3671abd47f46592a3151d549")
  ("counsel-projectile" . "06b03c1080d3ccc3fa9b9c41b1ccbcf13f058e4b")
- ("darkokai" . "5820aeddfc8c869ba840cc534eba776936656a66")
  ("dash.el" . "be4e939b8982fa9a6ac5286027ea8ae1ff9b9b19")
  ("dired-hacks" . "d1a2bda6aa8f890cb367297ed93aee6d3b5ba388")
  ("dired-sidebar" . "18986f015c993508af0b1b4e43e11dbd7af98057")

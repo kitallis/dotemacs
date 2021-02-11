@@ -1,5 +1,5 @@
 ;; A utility package to collect various Icon Fonts and propertize them within Emacs.
-;; (use-package all-the-icons)
+(use-package all-the-icons)
 
 ;; Automatic resizing of Emacs windows to the golden ratio
 (use-package golden-ratio
