@@ -45,7 +45,7 @@ rm ~/.emacs.d/straight
 * Straight / package manager configuration goes in `init.el`
 * Configurations broadly categorized go in their own `conf/*.el` files
 * Customizations / overrides can go in `init-user.el` and are loaded last
-* Run `M-x straight-freeze-dependencies` to keep the lockfile updated for all `straight` recipes
+* Run `M-x straight-freeze-versions` to keep the lockfile updated for all `straight` recipes
 
 ## Installing Emacs
 
