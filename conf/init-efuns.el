@@ -120,4 +120,21 @@
     (isearch-forward-symbol-at-point)
     (isearch-query-replace-regexp))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ADDED BY STEVE TEH GREAT ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defconst me/cache-directory
+  (expand-file-name "~/.emacs.d/.cache/")
+  "Directory where all cache files should be saved")
+
+(defun me/cache-concat (name)
+  "Return the absolute path of NAME under `me/cache-directory'."
+  (let* ((directory (file-name-as-directory me/cache-directory))
+         (path (convert-standard-filename (concat directory name))))
+    (make-directory (file-name-directory path) t)
+    path))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; END O XTRA GARBAGE STUFF ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (provide 'init-efuns)
