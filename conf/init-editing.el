@@ -51,6 +51,6 @@
 ;; Distraction-free mode
 (use-package writeroom-mode
   :config
-  (setq writeroom-mode-toggle-mode-line t))
+  (setq writeroom-extra-line-spacing 0.6))
 
 (provide 'init-editing)
