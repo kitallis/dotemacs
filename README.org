@@ -36,6 +36,8 @@ clojure-lsp --help
 
 **** Rust
 
+Install [rust-analyzer](https://github.com/rust-analyzer/rust-analyzer).
+
 *** Install
 #+BEGIN_SRC bash
 git clone https://github.com/kitallis/dotemacs.git ~/.emacs.d
