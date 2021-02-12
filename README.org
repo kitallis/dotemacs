@@ -13,10 +13,10 @@ Install [[https://github.com/tonsky/FiraCode][Fira Code]] for text and [[https:/
 
 | Lang       | Available |
 |------------+-----------|
-| [[https://emacs-lsp.github.io/lsp-mode/page/lsp-css/][Bash]]       | ✅        |
-| [[https://emacs-lsp.github.io/lsp-mode/page/lsp-dockerfile/][Dockerfile]] | ✅        |
-| [[https://emacs-lsp.github.io/lsp-mode/page/lsp-html/][HTML]]       | ✅        |
-| [[https://emacs-lsp.github.io/lsp-mode/page/lsp-css/][CSS]]        | ✅        |
+| [[https://github.com/bash-lsp/bash-language-server][Bash]]       | ✅        |
+| [[https://emacs-lsp.github.io/lsp-mode/page/lsp-dockerfile][Dockerfile]] | ✅        |
+| [[https://emacs-lsp.github.io/lsp-mode/page/lsp-html][HTML]]       | ✅        |
+| [[https://emacs-lsp.github.io/lsp-mode/page/lsp-css][CSS]]        | ✅        |
 
 **** Clojure
 Install ~clojure-lsp~ [[https://github.com/clojure-lsp/clojure-lsp#manually][manually]], and then sanity-check it:
