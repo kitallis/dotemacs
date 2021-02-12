@@ -44,9 +44,9 @@
 ;; This library works around this problem by copying important
 ;; environment variables from the user's shell.
 ;; https://github.com/purcell/exec-path-from-shell
-(if *is-a-mac*
-    (use-package exec-path-from-shell
-      :config
-      (exec-path-from-shell-initialize)))
+(when *is-a-mac*
+  (use-package exec-path-from-shell
+    :config
+    (exec-path-from-shell-initialize)))
 
 (provide 'init-sane-defaults)
