@@ -17,11 +17,16 @@ Install [Fira Code](https://github.com/tonsky/FiraCode) for text and [Inconsolat
 Install `clojure-lsp` manually: https://github.com/clojure-lsp/clojure-lsp#manually then sanity-check it:
 
 ```shell
-cp ~/Downloads/clojure-lsp /usr/local/bin/clojure-lsp # preferred
-which clojure-lsp                                     # => /usr/local/bin/clojure-lsp
-clojure-lsp --help                                    # on MacOS you might need to "allow" it through
-                                                      # System Preferences -> Security & Privacy to get:
-                                                      # => clojure-lsp 2021.02.11-12.43.06
+# preferred
+cp ~/Downloads/clojure-lsp /usr/local/bin/clojure-lsp 
+
+which clojure-lsp
+# => /usr/local/bin/clojure-lsp
+
+# on MacOS you might need to "allow" it through
+# System Preferences -> Security & Privacy to get:
+clojure-lsp --help
+# => clojure-lsp 2021.02.11-12.43.06
 ```
 
 ### Install
@@ -30,7 +35,8 @@ clojure-lsp --help                                    # on MacOS you might need 
 git clone https://github.com/kitallis/dotemacs.git ~/.emacs.d
 ```
 
-On the first run, Emacs will install and compile any packages handled by the package manager. Edit `~/.emacs.d/init-user.el` for small personal tweaks, since this file is gitignored and loaded last.
+On the first run, Emacs will install and compile any packages handled by the package manager. 
+Edit `~/.emacs.d/init-user.el` for small personal tweaks, since this file is gitignored and loaded last.
 
 ## Troubleshooting
 
@@ -44,7 +50,6 @@ rm ~/.emacs.d/straight
 
 * Straight / package manager configuration goes in `init.el`
 * Configurations broadly categorized go in their own `conf/*.el` files
-* Customizations / overrides can go in `init-user.el` and are loaded last
 * Run `M-x straight-freeze-versions` to keep the lockfile updated for all `straight` recipes
 
 ## Installing Emacs
