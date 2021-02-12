@@ -2,11 +2,17 @@
   :hook ((clojure-mode . lsp)
          (clojurec-mode . lsp)
          (clojurescript-mode . lsp)
+         (rustic-mode . lsp)
+         (elixir-mode . lsp)
+         (web-mode . lsp)
          (sh-mode . lsp))
 
   :config
   ;; add paths to your local installation of project mgmt tools, like lein
   (setenv "PATH" (concat "/usr/local/bin" path-separator (getenv "PATH")))
+
+  (add-to-list 'exec-path (concat "/Users/" user-login-name "/bin/elixir-ls"))
+
   (dolist (m '(clojure-mode
                clojurec-mode
                clojurescript-mode
@@ -21,7 +27,6 @@
   ;; submitting bug reports with `lsp-workspace-show-log`
   ;; (lsp-log-io t)
 
-  (lsp-auto-guess-root t)
   (lsp-eldoc-enable-hover nil)
   (lsp-enable-indentation nil)
   (lsp-enable-folding nil)
@@ -29,7 +34,6 @@
   (lsp-idle-delay .01)
   (lsp-keymap-prefix nil)
   (lsp-session-file (me/cache-concat "lsp/session.eld")))
-
 
 (use-package lsp-ui
   :commands lsp-ui-mode)
