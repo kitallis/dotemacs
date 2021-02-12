@@ -36,7 +36,7 @@ clojure-lsp --help
 
 **** Rust
 
-Install [https://github.com/rust-analyzer/rust-analyzer][rust-analyzer]].
+Install [[https://github.com/rust-analyzer/rust-analyzer][rust-analyzer]].
 
 *** Install
 #+BEGIN_SRC bash
