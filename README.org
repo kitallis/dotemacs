@@ -1,15 +1,15 @@
 * dotemacs
-Minimalist emacs config. Uses the [straight](https://github.com/raxod502/straight.el) package manager.
+Minimalist emacs config. Uses the [[(https://github.com/raxod502/straight.el)][straight]] package manager.
 
 ** Setup
 *** Dependency: Emacs
-See `Installing Emacs` below.
+See ~Installing Emacs~ below.
 
 *** Dependency: Fonts
-Install [Fira Code](https://github.com/tonsky/FiraCode) for text and [Inconsolata Nerd Font](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Inconsolata/complete/Inconsolata%20Nerd%20Font%20Complete.otf) for modeline.
+Install [[https://github.com/tonsky/FiraCode][Fira Code]] for text and [[https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Inconsolata/complete/Inconsolata%20Nerd%20Font%20Complete.otf][Inconsolata Nerd Font]] for modeline.
 
 *** Dependency: LSP servers
-**** Through `lsp-install-server`
+**** Through ~lsp-install-server~
 
 | Lang       | Available |
 |------------+-----------|
@@ -19,7 +19,7 @@ Install [Fira Code](https://github.com/tonsky/FiraCode) for text and [Inconsolat
 | [[https://emacs-lsp.github.io/lsp-mode/page/lsp-css/][CSS]]        | ✅        |
 
 **** Clojure
-Install `clojure-lsp` manually: https://github.com/clojure-lsp/clojure-lsp*manually then sanity-check it:
+Install ~clojure-lsp~ [[https://github.com/clojure-lsp/clojure-lsp#manually][manually]], and then sanity-check it:
 
 #+BEGIN_SRC shell
 # preferred
@@ -43,7 +43,7 @@ git clone https://github.com/kitallis/dotemacs.git ~/.emacs.d
 
 On the first run, Emacs will install and compile any packages handled by the package manager.
 
-Edit `~/.emacs.d/init-user.el` for small personal tweaks, since this file is gitignored and loaded last.
+Edit =~/.emacs.d/init-user.el= for small personal tweaks, since this file is gitignored and loaded last.
 
 ** Troubleshooting
 When in doubt, bounce all your straight packages:
@@ -53,10 +53,10 @@ rm ~/.emacs.d/straight
 #+END_SRC
 
 ** Maintenance
-  - Straight / package manager configuration goes in `init.el`
-  - Configurations broadly categorized go in their own `conf/*.el` files
-  - Customizations / overrides can go in `init-user.el` and are loaded last
-  - Run `M-x straight-freeze-versions` to keep the lockfile updated for all `straight` recipes
+  - Straight / package manager configuration goes in ~init.el~
+  - Configurations broadly categorized go in their own ~conf/*.el~ files
+  - Customizations / overrides can go in ~init-user.el~ and are loaded last
+  - Run ~M-x straight-freeze-versions~ to keep the lockfile updated for all ~straight~ recipes
 
 ** Installing Emacs
 **** OS X
@@ -69,4 +69,4 @@ Follow the instructions at https://launchpad.net/~cassou/+archive/emacs.
 
 **** Windows
 
-You can find a binary at http://ftp.gnu.org/gnu/emacs/windows. After you download and unzip the latest version, you can run the Emacs executable under `bin\runemacs.exe`.
+You can find a binary at http://ftp.gnu.org/gnu/emacs/windows. After you download and unzip the latest version, you can run the Emacs executable under ~bin\runemacs.exe~.
