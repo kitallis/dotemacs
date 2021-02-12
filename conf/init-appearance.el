@@ -108,6 +108,4 @@
         doom-modeline-persp-name nil
         doom-modeline-window-width-limit fill-column))
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-
 (provide 'init-appearance)
