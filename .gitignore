@@ -21,3 +21,4 @@ smex-items
 .cache
 .lsp-session*
 init-user.el
+emojis/

@@ -108,4 +108,7 @@
         doom-modeline-persp-name nil
         doom-modeline-window-width-limit fill-column))
 
+(use-package emojify
+  :hook (after-init . global-emojify-mode))
+
 (provide 'init-appearance)
