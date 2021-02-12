@@ -41,6 +41,8 @@
   (setq lsp-clojure-server-command '("bash" "-c" "clojure-lsp"))
 
   :custom
+  ;; (lsp-log-io t) ;; turn this on to capture client/server comms before
+                    ;; submitting bug reports with `lsp-workspace-show-log`
   (lsp-auto-guess-root t)
   (lsp-eldoc-enable-hover nil)
   (lsp-enable-indentation nil)
