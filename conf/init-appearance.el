@@ -108,6 +108,7 @@
         doom-modeline-persp-name nil
         doom-modeline-window-width-limit fill-column))
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(use-package emojify
+  :hook (after-init . global-emojify-mode))
 
 (provide 'init-appearance)

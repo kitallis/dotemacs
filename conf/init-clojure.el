@@ -9,50 +9,6 @@
             (lambda ()
               (clj-refactor-mode 1))))
 
-;; TODO: remove this. @borkdude and @ericdallo tell me we should *not*
-;;       manually use flycheck-clj-kondo with clojure-lsp, since clojure-lsp
-;;       is already using flycheck and kondo under the hood. -sd
-;; (use-package flycheck-clj-kondo
-;;   :config
-;;   (remove-hook 'clojure-mode-hook
-;;                (lambda ()
-;;                  (require 'flycheck-clj-kondo))))
-
-;; Aggressively indents your clojure code
-(use-package aggressive-indent
-  :commands (aggressive-indent-mode)
-  :config
-  (add-hook 'clojure-mode-hook 'aggressive-indent-mode))
-
-(use-package lsp-mode
-  :hook ((clojure-mode . lsp)
-         (clojurec-mode . lsp)
-         (clojurescript-mode . lsp))
-  :config
-  ;; add paths to your local installation of project mgmt tools, like lein
-  (setenv "PATH" (concat "/usr/local/bin" path-separator (getenv "PATH")))
-  (dolist (m '(clojure-mode
-               clojurec-mode
-               clojurescript-mode
-               clojurex-mode))
-    (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
-
-  ;; Optional: In case `clojure-lsp` is not in your PATH
-  (setq lsp-clojure-server-command '("bash" "-c" "clojure-lsp"))
-
-  :custom
-  ;; (lsp-log-io t) ;; turn this on to capture client/server comms before
-                    ;; submitting bug reports with `lsp-workspace-show-log`
-  (lsp-auto-guess-root t)
-  (lsp-eldoc-enable-hover nil)
-  (lsp-enable-indentation nil)
-  (lsp-enable-file-watchers nil)
-  (lsp-enable-folding nil)
-  (lsp-headerline-breadcrumb-enable nil)
-  (lsp-idle-delay .01)
-  (lsp-keymap-prefix nil)
-  (lsp-session-file (me/cache-concat "lsp/session.eld")))
-
 ;; Better syntax highlighting
 (use-package clojure-mode-extra-font-locking)
 
@@ -76,10 +32,6 @@
 ;; To add some colors to those boring parens
 (use-package rainbow-delimiters
   :init (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
-
-(define-clojure-indent
-  (defrecord 1)
-  (as-> 2))
 
 ;; Treat hyphens as a word character when transposing words
 (defvar clojure-mode-with-hyphens-as-word-sep-syntax-table

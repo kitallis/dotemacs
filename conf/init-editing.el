@@ -10,6 +10,7 @@
 (use-package expand-region
   :config (global-set-key (kbd "C-;") 'er/expand-region))
 
+;; Treat undo history as branching tree
 (use-package undo-tree
   :bind ("s-Z" . 'undo-tree-redo)
   :config
@@ -37,12 +38,19 @@
     :confirm prefix
     :flags ("--hidden -g !.git")))
 
+;; ensure scrolling remains fast
 (use-package fast-scroll
   :config
   (fast-scroll-config)
   (fast-scroll-mode 1))
 
+;; highlight TODO everywhere
 (use-package hl-todo
   :config (global-hl-todo-mode t))
+
+;; Distraction-free mode
+(use-package writeroom-mode
+  :config
+  (setq writeroom-extra-line-spacing 0.6))
 
 (provide 'init-editing)
