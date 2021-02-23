@@ -37,7 +37,8 @@
 
 ;; lsp-ui provides handy tooltips but they cover too much
 ;; of the window. enable this if you want them back:
-;; (use-package lsp-ui
-;;   :commands lsp-ui-mode)
+(use-package lsp-ui
+  :disabled t
+  :commands lsp-ui-mode)
 
 (provide 'init-lsp)
