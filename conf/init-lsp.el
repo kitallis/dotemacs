@@ -35,7 +35,9 @@
   (lsp-keymap-prefix nil)
   (lsp-session-file (me/cache-concat "lsp/session.eld")))
 
-(use-package lsp-ui
-  :commands lsp-ui-mode)
+;; lsp-ui provides handy tooltips but they cover too much
+;; of the window. enable this if you want them back:
+;; (use-package lsp-ui
+;;   :commands lsp-ui-mode)
 
 (provide 'init-lsp)
