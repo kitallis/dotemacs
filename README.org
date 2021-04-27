@@ -19,7 +19,7 @@ Install [[https://github.com/tonsky/FiraCode][Fira Code]] for text and [[https:/
 | [[https://emacs-lsp.github.io/lsp-mode/page/lsp-css][CSS]]        | ✅        |
 
 **** Clojure
-Install ~clojure-lsp~ [[https://github.com/clojure-lsp/clojure-lsp#manually][manually]], and then sanity-check it:
+Install ~clojure-lsp~ [[https://clojure-lsp.github.io/clojure-lsp/installation/#manually][manually]], and then sanity-check it:
 
 #+BEGIN_SRC shell
 # preferred
@@ -31,7 +31,10 @@ which clojure-lsp
 # on MacOS you might need to "allow" it through
 # System Preferences -> Security & Privacy to get:
 clojure-lsp --help
-# => clojure-lsp 2021.02.11-12.43.06
+# => clojure-lsp 2021.04.23-15.49.47
+# => clj-kondo 2021.04.23
+
+# note: the versions noted above are the last good test
 #+END_SRC
 
 **** Rust
@@ -52,6 +55,21 @@ When in doubt, bounce all your straight packages:
 
 #+BEGIN_SRC bash
 rm ~/.emacs.d/straight
+#+END_SRC
+
+If ~clojure-lsp~ or ~clj-kondo~ are behaving strangely, try:
+
+#+BEGIN_SRC bash
+# 1. upgrade clojure-lsp: https://github.com/clojure-lsp/clojure-lsp/releases/
+# 2. upgrade clj-kondo: https://github.com/clj-kondo/clj-kondo/blob/master/doc/install.md#installation-script-macos-and-linux
+# 3. clean caches:
+cd $YOUR_PROJECT
+rm .lsp/sqlite.db
+rm -rf .clj-kondo/.cache/
+# 4. prebuild clj-kondo cache:
+mkdir .clj-kondo # if it doesn't exist
+clj-kondo --lint "$(lein classpath)" --dependencies --parallel --copy-configs
+# See: https://github.com/clj-kondo/clj-kondo#project-setup
 #+END_SRC
 
 ** Maintenance
