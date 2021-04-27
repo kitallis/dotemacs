@@ -19,7 +19,7 @@ Install [[https://github.com/tonsky/FiraCode][Fira Code]] for text and [[https:/
 | [[https://emacs-lsp.github.io/lsp-mode/page/lsp-css][CSS]]        | ✅        |
 
 **** Clojure
-Install ~clojure-lsp~ [[https://github.com/clojure-lsp/clojure-lsp#manually][manually]], and then sanity-check it:
+Install ~clojure-lsp~ [[https://github.com/clojure-lsp/clojure-lsp/releases][manually]], and then sanity-check it:
 
 #+BEGIN_SRC shell
 # preferred
@@ -31,8 +31,9 @@ which clojure-lsp
 # on MacOS you might need to "allow" it through
 # System Preferences -> Security & Privacy to get:
 clojure-lsp --help
-# => clojure-lsp 2021.04.23-15.49.47
-# => clj-kondo 2021.04.23
+# => clojure-lsp <latest-release>
+clj-kondo --help
+# => clj-kondo <latest release>
 #+END_SRC
 
 **** Rust
