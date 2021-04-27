@@ -19,7 +19,7 @@ Install [[https://github.com/tonsky/FiraCode][Fira Code]] for text and [[https:/
 | [[https://emacs-lsp.github.io/lsp-mode/page/lsp-css][CSS]]        | ✅        |
 
 **** Clojure
-Install ~clojure-lsp~ [[https://github.com/clojure-lsp/clojure-lsp/releases][manually]], and then sanity-check it:
+Install ~clojure-lsp~ [[https://clojure-lsp.github.io/clojure-lsp/installation/#manually][manually]], and then sanity-check it:
 
 #+BEGIN_SRC shell
 # preferred
