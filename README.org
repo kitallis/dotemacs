@@ -31,9 +31,10 @@ which clojure-lsp
 # on MacOS you might need to "allow" it through
 # System Preferences -> Security & Privacy to get:
 clojure-lsp --help
-# => clojure-lsp <latest-release>
-clj-kondo --help
-# => clj-kondo <latest release>
+# => clojure-lsp 2021.04.23-15.49.47
+# => clj-kondo 2021.04.23
+
+# note: the versions noted above are the last good test
 #+END_SRC
 
 **** Rust
