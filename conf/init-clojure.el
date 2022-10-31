@@ -81,4 +81,6 @@
               (local-set-key (kbd "C-c C-n") 'cider-eval-buffer)
               (local-set-key (kbd "C-x C-i") 'cider-inspect-last-sexp))))
 
+(set-variable 'cider-lein-parameters "with-profile +dev repl :headless")
+
 (provide 'init-clojure)
