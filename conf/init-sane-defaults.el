@@ -49,4 +49,7 @@
     :config
     (exec-path-from-shell-initialize)))
 
+;; https://github.com/pashky/restclient.el/issues/212
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
 (provide 'init-sane-defaults)

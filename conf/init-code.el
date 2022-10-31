@@ -1,3 +1,5 @@
+(use-package restclient)
+
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
