@@ -76,14 +76,14 @@
 
 ;; Line numbers
 ;; Add some padding when displaying line numbers
-(setq linum-format "%5d ")
+(setq linum-format "%4d ")
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 (use-package doom-themes
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  (load-theme 'doom-challenger-deep))
+  (load-theme 'doom-Iosvkem))
 
 (use-package doom-modeline
   :hook (after-init . doom-modeline-init)
@@ -107,8 +107,5 @@
         doom-modeline-irc nil
         doom-modeline-persp-name nil
         doom-modeline-window-width-limit fill-column))
-
-(use-package emojify
-  :hook (after-init . global-emojify-mode))
 
 (provide 'init-appearance)
