@@ -44,6 +44,9 @@ Just make sure you have [[https://github.com/rust-analyzer/rust-analyzer][rust-a
 *** Install
 #+BEGIN_SRC bash
 git clone https://github.com/kitallis/dotemacs.git ~/.emacs.d
+# or
+git clone https://github.com/deobald/dotemacs.git
+ln -s /home/<you>/work/deobald/dotemacs ~/.emacs.d
 #+END_SRC
 
 On the first run, Emacs will install and compile any packages handled by the package manager.
@@ -82,9 +85,12 @@ clj-kondo --lint "$(lein classpath)" --dependencies --parallel --copy-configs
 
 Install vanilla Emacs as a Mac app from http://emacsformacosx.com. Other options, like Aquamacs, are supposed to make Emacs more “Mac-like,” but they’re problematic in the long run because they’re set up so differently from standard Emacs that it’s difficult to use the Emacs manual or follow along with tutorials.
 
-**** Ubuntu
+**** Ubuntu 22.04+
 
-Follow the instructions at https://launchpad.net/~cassou/+archive/emacs.
+#+BEGIN_SRC bash
+sudo apt update
+sudo apt install emacs -y
+#+END_SRC
 
 **** Windows
 
