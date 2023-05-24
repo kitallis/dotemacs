@@ -4,8 +4,7 @@
 
 ;; Reduce the frequency of garbage collection by making it happen on
 ;; each 50MB of allocated data (the default is on every 0.76MB)
-(setq gc-cons-threshold 50000000
-      gc-cons-percentage 0.6)
+(setq gc-cons-threshold 50000000 gc-cons-percentage 0.6)
 
 ;; Allow loading custom config from specified dir
 (add-to-list 'load-path (expand-file-name "conf" user-emacs-directory))
@@ -13,8 +12,7 @@
 ;; Bootstrap configuration for straight.el
 (setq straight-use-package-by-default t)
 (defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+(let ((bootstrap-file (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
       (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
