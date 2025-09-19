@@ -27,9 +27,9 @@ which clojure-lsp
 
 # on MacOS you might need to "allow" it through
 # System Preferences -> Security & Privacy to get:
-clojure-lsp --version
-# => clojure-lsp 2025.08.25-14.21.46
-# => clj-kondo 2025.07.28
+clojure-lsp --help
+# => clojure-lsp 2021.04.23-15.49.47
+# => clj-kondo 2021.04.23
 
 # note: the versions noted above are the last good test
 #+END_SRC
@@ -41,9 +41,6 @@ Just make sure you have [[https://github.com/rust-analyzer/rust-analyzer][rust-a
 *** Install
 #+BEGIN_SRC bash
 git clone https://github.com/kitallis/dotemacs.git ~/.emacs.d
-# or
-git clone https://github.com/deobald/dotemacs.git
-ln -s /home/<you>/work/deobald/dotemacs ~/.emacs.d
 #+END_SRC
 
 On the first run, Emacs will install and compile any packages handled by the package manager.
