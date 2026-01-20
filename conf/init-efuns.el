@@ -1,14 +1,14 @@
-(defun kg/split-below-and-move ()
+(defun me/split-below-and-move ()
   (interactive)
   (split-window-below)
   (other-window 1))
 
-(defun kg/split-right-and-move ()
+(defun me/split-right-and-move ()
   (interactive)
   (split-window-right)
   (other-window 1))
 
-(defun kg/beginning-of-line-dwim ()
+(defun me/beginning-of-line-dwim ()
   "Toggle between moving point to the first non-whitespace character, and the start of the line."
   (interactive)
   (let ((start-position (point)))
@@ -19,14 +19,14 @@
     (when (= (point) start-position)
       (move-beginning-of-line nil))))
 
-(defun kg/duplicate-start-of-line-or-region ()
+(defun me/duplicate-start-of-line-or-region ()
   "Duplicate start of line or region."
   (interactive)
   (if mark-active
-      (kg/duplicate-region)
+      (me/duplicate-region)
     (kg/duplicate-start-of-line)))
 
-(defun kg/duplicate-start-of-line ()
+(defun me/duplicate-start-of-line ()
   "Duplicate start of line."
   (let ((text (buffer-substring (point)
                                 (beginning-of-thing 'line))))
@@ -35,7 +35,7 @@
     (insert text)
     (open-line 1)))
 
-(defun kg/duplicate-region ()
+(defun me/duplicate-region ()
   "Duplicate start of region."
   (let* ((end (region-end))
          (text (buffer-substring (region-beginning)
@@ -46,23 +46,23 @@
     (setq deactivate-mark nil)
     (exchange-point-and-mark)))
 
-(defun kg/set-fringe-background ()
+(defun me/set-fringe-background ()
   "Set the fringe background to the same color as the regular background."
   (interactive)
   (custom-set-faces
    `(fringe ((t (:background ,(face-background 'default)))))))
 
-(add-hook 'after-init-hook #'kg/set-fringe-background)
+(add-hook 'after-init-hook #'me/set-fringe-background)
 
-(defun kg/reset-ui ()
+(defun me/reset-ui ()
   "Reset some UI components after changing a theme."
   (interactive)
   ;; (fringe-mode 10)
   (fringe-mode '(0 . 0))
-  (kg/set-fringe-background)
+  (me/set-fringe-background)
   (setq linum-format "%5d "))
 
-(defun kg/rename-this-buffer-and-file ()
+(defun me/rename-this-buffer-and-file ()
   "Rename current buffer and file it is visiting."
   (interactive)
   (let ((name (buffer-name))
@@ -81,7 +81,7 @@
 			name
 			(file-name-nondirectory new-name))))))))
 
-(defun kg/delete-this-buffer-and-file ()
+(defun me/delete-this-buffer-and-file ()
   "Remove file connected to current buffer and kill buffer."
   (interactive)
   (let ((filename (buffer-file-name))
@@ -94,7 +94,7 @@
         (kill-buffer buffer)
         (message "File '%s' successfully removed" filename)))))
 
-(defun kg/search-marked-region-if-available (start end)
+(defun me/search-marked-region-if-available (start end)
   "Pre-fill counsel-rg with marked region if available."
     (interactive "r")
     (if (use-region-p)
@@ -102,11 +102,11 @@
           (counsel-rg regionp))
       (counsel-rg)))
 
-(defun kg/show-user-config ()
+(defun me/show-user-config ()
   (interactive)
   (find-file "~/.emacs.d/init-user.el"))
 
-(defun kg/toggle-maximize-buffer () "Maximize buffer"
+(defun me/toggle-maximize-buffer () "Maximize buffer"
   (interactive)
   (if (= 1 (length (window-list)))
       (jump-to-register '_)
@@ -114,7 +114,7 @@
       (window-configuration-to-register '_)
       (delete-other-windows))))
 
-(defun kg/isearch-query-replace-symbol-at-point ()
+(defun me/isearch-query-replace-symbol-at-point ()
     "Run `query-replace-regexp' for the symbol at point."
     (interactive)
     (isearch-forward-symbol-at-point)
