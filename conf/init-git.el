@@ -3,4 +3,6 @@
   :config
   (setq magit-set-upstream-on-push 'askifnotset))
 
+(add-hook 'magit-status-sections-hook 'magit-insert-worktrees)
+
 (provide 'init-git)
