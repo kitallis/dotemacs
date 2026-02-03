@@ -86,7 +86,7 @@
   (load-theme 'doom-Iosvkem))
 
 (use-package doom-modeline
-  :hook (after-init . doom-modeline-init)
+  :hook (after-init . doom-modeline-mode)
   :init
   (set-face-attribute 'mode-line nil :height 140)
   (set-face-attribute 'mode-line-inactive nil :height 140)
