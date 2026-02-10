@@ -40,6 +40,7 @@
 (require 'init-completions)
 (require 'init-dired)
 (require 'init-git)
+(require 'init-code-review)
 (require 'init-org)
 (require 'init-projectile)
 (require 'init-keybinds)
