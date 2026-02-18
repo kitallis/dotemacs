@@ -41,6 +41,7 @@
 (require 'init-dired)
 (require 'init-git)
 (require 'init-code-review)
+;; (require 'init-code-review-nxt) ;; parked: magit-section buffer UI
 (require 'init-org)
 (require 'init-projectile)
 (require 'init-keybinds)
