@@ -18,6 +18,9 @@
 
 (setq save-interprogram-paste-before-kill t)
 
+;; Kill current buffer without prompt
+(global-set-key (kbd "C-x k") 'kill-current-buffer)
+
 ;; Apply grep changes to file without sed etc.
 (use-package wgrep)
 

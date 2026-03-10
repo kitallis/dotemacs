@@ -1,13 +1,13 @@
 (use-package smartparens
   :init (add-hook 'markdown-mode-hook 'smartparens-mode))
 
-;; Adds some niceties/refactoring support
-(use-package clj-refactor
-  :config
-  (setq cljr-warn-on-eval nil)
-  (add-hook 'clojure-mode-hook
-            (lambda ()
-              (clj-refactor-mode 1))))
+;; DISABLED: causes segfault on startup
+;; (use-package clj-refactor
+;;   :config
+;;   (setq cljr-warn-on-eval nil)
+;;   (add-hook 'clojure-mode-hook
+;;             (lambda ()
+;;               (clj-refactor-mode 1))))
 
 ;; Better syntax highlighting
 (use-package clojure-mode-extra-font-locking)

@@ -106,6 +106,12 @@
   (interactive)
   (find-file "~/.emacs.d/init-user.el"))
 
+(defun me/reload-config ()
+  "Reload Emacs configuration from init.el."
+  (interactive)
+  (load-file (expand-file-name "init.el" user-emacs-directory))
+  (message "Config reloaded."))
+
 (defun me/toggle-maximize-buffer () "Maximize buffer"
   (interactive)
   (if (= 1 (length (window-list)))

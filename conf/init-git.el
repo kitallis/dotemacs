@@ -5,10 +5,12 @@
 
 (add-hook 'magit-status-sections-hook 'magit-insert-worktrees)
 
-(use-package hutch
+(use-package magit-hutch
   :straight (:local-repo "/Users/kitallis/Code/adjaecent/magit-hutch")
   :config
-  (require 'hutch-ui)
+  (require 'llm-claude)
+  (setq llm-log t)
+  (setq llm-warn-on-nonfree nil)
   (setq hutch-provider
         (make-llm-claude :key (getenv "ANTHROPIC_API_KEY")
                          :chat-model "claude-sonnet-4-5-20250929")))

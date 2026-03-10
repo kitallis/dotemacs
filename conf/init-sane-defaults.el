@@ -44,9 +44,15 @@
 ;; This library works around this problem by copying important
 ;; environment variables from the user's shell.
 ;; https://github.com/purcell/exec-path-from-shell
+(defvar me/shell-env-vars
+  '("GEMINI_API_KEY" "ANTHROPIC_API_KEY" "OPENAI_API_KEY")
+  "Environment variables to copy from the shell into Emacs.")
+
 (when *is-a-mac*
   (use-package exec-path-from-shell
     :config
+    (dolist (var me/shell-env-vars)
+      (add-to-list 'exec-path-from-shell-variables var))
     (exec-path-from-shell-initialize)))
 
 ;; https://github.com/pashky/restclient.el/issues/212
