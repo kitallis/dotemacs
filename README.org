@@ -45,13 +45,26 @@ git clone https://github.com/kitallis/dotemacs.git ~/.emacs.d
 
 On the first run, Emacs will install and compile any packages handled by the package manager.
 
-Edit =~/.emacs.d/init-user.el= for small personal tweaks, since this file is gitignored and loaded last.
+Edit =~/.emacs.d/init-user.el= for small personal tweaks, since this file is gitignored and loaded last. Handy for overriding a straight recipe to point at a local checkout, injecting machine-specific paths, or anything you don't want in version control.
 
 ** Troubleshooting
 When in doubt, bounce all your straight packages:
 
 #+BEGIN_SRC bash
 rm ~/.emacs.d/straight
+#+END_SRC
+
+*** Emacs 31 + macOS: native-compile fails with ~invalid version number in '-mmacosx-version-min=18.0'~
+Builds of Emacs 31.1 from [[http://emacsformacosx.com][emacsformacosx.com]] stamp a macOS version (18.0) that was never released (Apple jumped from macOS 15 to 26). Newer ~clang~ rejects it, breaking every native-comp invocation. The fix lives in ~early-init.el~ and overrides the driver flag to a real version:
+
+#+BEGIN_SRC elisp
+(setq native-comp-driver-options '("-mmacosx-version-min=26.0"))
+#+END_SRC
+
+After applying, nuke the broken cache so it recompiles clean:
+
+#+BEGIN_SRC bash
+rm -rf ~/.emacs.d/eln-cache/31_1-*
 #+END_SRC
 
 If ~clojure-lsp~ or ~clj-kondo~ are behaving strangely, try:
