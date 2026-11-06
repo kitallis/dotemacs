@@ -23,3 +23,9 @@ smex-items
 init-user.el
 emojis/
 .claude
+eln-cache/
+hutch-traces/
+tree-sitter/
+tramp
+projects
+*.~undo-tree~
