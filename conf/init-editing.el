@@ -1,3 +1,4 @@
+;;; init-editing.el --- -*- lexical-binding: t; -*-
 ;; Edit with multiple cursors at once
 (use-package multiple-cursors
   :config

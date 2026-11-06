@@ -1,3 +1,4 @@
+;;; init-clojure.el --- -*- lexical-binding: t; -*-
 (use-package smartparens
   :init (add-hook 'markdown-mode-hook 'smartparens-mode))
 

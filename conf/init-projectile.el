@@ -1,3 +1,4 @@
+;;; init-projectile.el --- -*- lexical-binding: t; -*-
 ;; Operate (list, search, replace....) on files at a project level.
 (use-package projectile
   :bind (:map projectile-mode-map

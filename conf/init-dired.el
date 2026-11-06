@@ -1,3 +1,4 @@
+;;; init-dired.el --- -*- lexical-binding: t; -*-
 (use-package dired-sidebar
   :bind (("C-x C-n" . dired-sidebar-toggle-sidebar))
   :commands (dired-sidebar-toggle-sidebar)

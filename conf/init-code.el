@@ -1,3 +1,4 @@
+;;; init-code.el --- -*- lexical-binding: t; -*-
 (use-package restclient)
 
 (use-package markdown-mode

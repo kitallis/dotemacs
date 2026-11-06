@@ -1,3 +1,4 @@
+;;; init-org.el --- -*- lexical-binding: t; -*-
 (use-package org
   :config
   (setq org-directory "~/org-notes"

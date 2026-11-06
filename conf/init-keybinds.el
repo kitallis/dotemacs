@@ -1,3 +1,4 @@
+;;; init-keybinds.el --- -*- lexical-binding: t; -*-
 (global-set-key (kbd "s-g") 'me/search-marked-region-if-available)
 (global-set-key (kbd "s-l") 'goto-line)
 (global-set-key (kbd "s-t") 'projectile-find-file)

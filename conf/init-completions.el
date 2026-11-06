@@ -1,3 +1,4 @@
+;;; init-completions.el --- -*- lexical-binding: t; -*-
 ;; Install and setup company-mode for autocompletion
 (use-package company
   :bind (("C-p" . company-select-previous)
