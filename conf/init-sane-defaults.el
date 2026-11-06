@@ -1,3 +1,4 @@
+;;; init-sane-defaults.el --- -*- lexical-binding: t; -*-
 ;; Automatically reload files when they change on disk
 (global-auto-revert-mode 1)
 (setq auto-revert-verbose nil)
@@ -45,7 +46,7 @@
 ;; environment variables from the user's shell.
 ;; https://github.com/purcell/exec-path-from-shell
 (defvar me/shell-env-vars
-  '("GEMINI_API_KEY" "ANTHROPIC_API_KEY" "OPENAI_API_KEY")
+  '("GEMINI_API_KEY" "ANTHROPIC_API_KEY" "OPENAI_API_KEY" "OPENROUTER_API_KEY")
   "Environment variables to copy from the shell into Emacs.")
 
 (when *is-a-mac*
