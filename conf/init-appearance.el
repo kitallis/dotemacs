@@ -1,5 +1,9 @@
+;;; init-appearance.el --- -*- lexical-binding: t; -*-
 ;; A utility package to collect various Icon Fonts and propertize them within Emacs.
 (use-package all-the-icons)
+
+(use-package svg-lib
+  :straight (:host github :repo "rougier/svg-lib"))
 
 ;; Automatic resizing of Emacs windows to the golden ratio
 (use-package golden-ratio
@@ -83,7 +87,7 @@
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  (load-theme 'doom-Iosvkem))
+  (load-theme 'doom-Iosvkem t))
 
 (use-package doom-modeline
   :hook (after-init . doom-modeline-mode)
@@ -107,5 +111,47 @@
         doom-modeline-irc nil
         doom-modeline-persp-name nil
         doom-modeline-window-width-limit fill-column))
+
+(defvar modeline-timer--duration (* 3 60) "Timer length, seconds.")
+(defvar modeline-timer--end nil)
+(defvar modeline-timer--timer nil)
+(defvar modeline-timer--string "")
+
+(defun modeline-timer--render (remaining)
+  (let* ((remaining (max 0 remaining))
+         (mins (/ remaining 60))
+         (secs (% remaining 60))
+         (elapsed (- modeline-timer--duration remaining))
+         (width 14)
+         (pos (min width (floor (* width (/ (float elapsed)
+                                            modeline-timer--duration)))))
+         (track (concat (make-string pos ?·) "🐇"
+                        (make-string (- width pos) ?·) "🥕"))
+         (face (cond ((<= remaining 0)  'error)
+                     ((<= remaining 60) 'warning)
+                     (t                 'success))))
+    (propertize (format " [%s] %02d:%02d " track mins secs) 'face face)))
+
+(defun modeline-timer--tick ()
+  (let ((remaining (round (- modeline-timer--end (float-time)))))
+    (setq modeline-timer--string (modeline-timer--render remaining))
+    (when (<= remaining 0)
+      (modeline-timer-stop)
+      (setq modeline-timer--string (propertize " ⏰ TIME " 'face 'error)))
+    (force-mode-line-update t)))
+
+(defun modeline-timer-start (&optional minutes)
+  "Start a countdown in the modeline (default 3 min, or prefix arg)."
+  (interactive "P")
+  (modeline-timer-stop)
+  (setq modeline-timer--duration (* 60 (or (and minutes (prefix-numeric-value minutes)) 3))
+        modeline-timer--end (+ (float-time) modeline-timer--duration))
+  (add-to-list 'global-mode-string '(:eval modeline-timer--string) t)
+  (setq modeline-timer--timer (run-at-time 0 1 #'modeline-timer--tick)))
+
+(defun modeline-timer-stop ()
+  (interactive)
+  (when (timerp modeline-timer--timer) (cancel-timer modeline-timer--timer))
+  (setq modeline-timer--timer nil))
 
 (provide 'init-appearance)
